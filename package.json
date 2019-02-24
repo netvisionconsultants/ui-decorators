@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/index.umd.js",
-  "module": "dist/index.es5.js",
+  "main": "dist/ui-component.umd.js",
+  "module": "dist/ui-component.es5.js",
   "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
