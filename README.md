@@ -28,17 +28,19 @@ const item = new TodoItem("Finish chores", "Finish all of my chores");
 console.log(item.renderComponent());
 ```
 
-```javascript
+Which will return a JSON object that looks like:
+
+```json
 {
     "fields": [
         {
             "label": "Name",
-            "type: "field",
+            "type": "field",
             "value": "FINISH CHORES"
         },
         {
             "label": "Description",
-            "type: "field",
+            "type": "field",
             "value": "Finish all of my chores"
         }
     ]
