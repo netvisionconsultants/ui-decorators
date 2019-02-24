@@ -28,7 +28,7 @@ const item = new TodoItem("Finish chores", "Finish all of my chores");
 console.log(item.renderComponent());
 ```
 
-```json
+```javascript
 {
     "fields": [
         {
