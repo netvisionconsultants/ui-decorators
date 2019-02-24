@@ -5,12 +5,44 @@ A TypeScript project to decorate classes with UI annotations.
 
 ### Usage
 
-```bash
-git clone https://github.com/alexjoverm/typescript-library-starter.git YOURFOLDERNAME
-cd YOURFOLDERNAME
+```typescript
+import UIComponent, { field } from "ui-decorators";
 
-# Run npm install and write your library name when asked. That's all!
-npm install
+export default class TodoItem extends UIComponent {
+    @field({ label: "Name", transform: val => val.toUpperCase() })
+    itemName: string;
+
+    @field({ label: "Description", transform: val => val })
+    itemDescription: string;
+
+    constructor() {
+        super();
+        for (itemName: string, itemDescription: string) {
+            this.itemName = itemName;
+            this.itemDescription = itemDescription;
+        }
+    }
+}
+
+const item = new TodoItem("Finish chores", "Finish all of my chores");
+console.log(item.renderComponent());
+```
+
+```json
+{
+    "fields": [
+        {
+            "label": "Name",
+            "type: "field",
+            "value": "FINISH CHORES"
+        },
+        {
+            "label": "Description",
+            "type: "field",
+            "value": "Finish all of my chores"
+        }
+    ]
+}
 ```
 
  - `npm t`: Run test suite
