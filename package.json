@@ -5,7 +5,7 @@
   "keywords": [],
   "main": "dist/ui-component.umd.js",
   "module": "dist/ui-component.es5.js",
-  "typings": "dist/types/index.d.ts",
+  "typings": "dist/types/ui-component.d.ts",
   "files": [
     "dist"
   ],
