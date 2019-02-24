@@ -15,12 +15,10 @@ export default class TodoItem extends UIComponent {
     @field({ label: "Description", transform: val => val })
     itemDescription: string;
 
-    constructor() {
+    constructor(itemName: string, itemDescription: string) {
         super();
-        for (itemName: string, itemDescription: string) {
-            this.itemName = itemName;
-            this.itemDescription = itemDescription;
-        }
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
     }
 }
 
