@@ -1,6 +1,6 @@
 export interface Component {
   fields: Array<any>
-  source: any
+  source: string
 }
 
 export interface FieldArgs {
@@ -41,7 +41,7 @@ export default class UIComponent {
         component.fields.push(this[k])
       }
       if (k === '_source') {
-        component.source = this[k]
+        component.source = this[k].toString()
       }
     }
     return JSON.stringify(component)
