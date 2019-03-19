@@ -9,5 +9,5 @@ export interface FieldArgs {
 export declare function source(name: string): (constructor: any) => void;
 export declare function field({ label, transform }: FieldArgs): (target: Object, propName: string) => void;
 export default class UIComponent {
-    renderComponent(): string;
+    renderComponent(): Component;
 }

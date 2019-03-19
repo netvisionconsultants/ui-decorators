@@ -11,11 +11,11 @@ function field(_a) {
     return function (target, propName) {
         Object.defineProperty(target, propName + "-UIField", {
             get: function () {
-                return ({
+                return {
                     label: label,
                     type: 'field',
                     value: transform ? transform(this[propName]) : this[propName]
-                });
+                };
             },
             enumerable: true
         });
@@ -28,17 +28,17 @@ var UIComponent = /** @class */ (function () {
     UIComponent.prototype.renderComponent = function () {
         var component = {
             fields: [],
-            source: '',
+            source: ''
         };
         for (var k in this) {
-            if (k.endsWith("UIField")) {
+            if (k.endsWith('UIField')) {
                 component.fields.push(this[k]);
             }
             if (k === '_source') {
                 component.source = this[k];
             }
         }
-        return JSON.stringify(component);
+        return component;
     };
     return UIComponent;
 }());
