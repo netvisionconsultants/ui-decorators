@@ -17,7 +17,7 @@
                     return ({
                         label: label,
                         type: 'field',
-                        value: transform(this[propName])
+                        value: transform ? transform(this[propName]) : this[propName]
                     });
                 },
                 enumerable: true
