@@ -6,7 +6,10 @@ var SortOrder;
     SortOrder["DESC"] = "DESC";
 })(SortOrder = exports.SortOrder || (exports.SortOrder = {}));
 function createTable(rows, columns, sortOrder, sortingColumn, transform) {
-    // TODO: Check if there are the right amount of columns
+    if (!rows || rows.length === 0)
+        return [];
+    if (columns.length === 0)
+        throw new Error('Columns must be provided to the table() decorator');
     var sortingColumnIdx;
     if (!sortOrder) {
         sortOrder = SortOrder.ASC;
@@ -16,8 +19,9 @@ function createTable(rows, columns, sortOrder, sortingColumn, transform) {
         sortingColumnIdx = 0;
     }
     else {
-        // TODO: check sorting column exists in columns
         sortingColumnIdx = columns.indexOf(sortingColumn);
+        if (sortingColumnIdx < 0)
+            throw new Error('sortingColumn does not exist');
     }
     var mappedRows = rows.map(function (row) {
         return columns.map(function (column) {
