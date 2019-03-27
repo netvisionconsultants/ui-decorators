@@ -1,5 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var source_1 = require("./decorators/source");
+exports.source = source_1.source;
+var table_1 = require("./decorators/table");
+exports.table = table_1.table;
+var field_1 = require("./decorators/field");
+exports.field = field_1.field;
 var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
