@@ -2,6 +2,9 @@
 
 A TypeScript project to decorate classes with UI annotations.
 
+### Docs
+https://netvisionconsultants.github.io/ui-decorators/docs/
+
 ### Why?
 
 This project was the result of wanting to decorate TypeScript classes and members with UI specific code for rendering in a web application. This allows the developer to create a plain TypeScript class as a data transfer object, but adds an additional `renderComponent()` method which will provide the UI specific rendering of the object. This object can then be passed to a web application for dynamic result rendering.
