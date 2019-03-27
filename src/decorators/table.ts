@@ -18,7 +18,10 @@ export function createTable(
     sortingColumn?: String,
     transform?: (val: Array<any>) => Array<any>
 ) {
-    // TODO: Check if there are the right amount of columns
+    if (!rows || rows.length === 0) return []
+
+    if (columns.length === 0) throw new Error('Columns must be provided to the table() decorator')
+
     let sortingColumnIdx: number
 
     if (!sortOrder) {
@@ -29,8 +32,8 @@ export function createTable(
         sortingColumn = columns[0]
         sortingColumnIdx = 0
     } else {
-        // TODO: check sorting column exists in columns
         sortingColumnIdx = columns.indexOf(sortingColumn)
+        if (sortingColumnIdx < 0) throw new Error('sortingColumn does not exist')
     }
 
     const mappedRows = rows.map(row => {
