@@ -12,7 +12,7 @@ describe('UIComponent', () => {
     it('UIComponent.renderComponent() should return default JSON', () => {
         const component = new UIComponent()
         const json = component.renderComponent()
-        expect(json).toHaveProperty('fields')
+        expect(json).toHaveProperty('components')
         expect(json).toHaveProperty('source')
     })
 
@@ -29,13 +29,13 @@ describe('UIComponent', () => {
         }
         const testComponent = new TestComponent('foo')
         const json: Object = testComponent.renderComponent()
-        expect(json).toHaveProperty('fields')
-        expect((json as any).fields[0]).toHaveProperty('label')
-        expect((json as any).fields[0]).toHaveProperty('type')
-        expect((json as any).fields[0]).toHaveProperty('value')
-        expect((json as any).fields[0].label).toEqual('label')
-        expect((json as any).fields[0].type).toEqual('field')
-        expect((json as any).fields[0].value).toEqual('foo-changed')
+        expect(json).toHaveProperty('components')
+        expect((json as any).components[0]).toHaveProperty('label')
+        expect((json as any).components[0]).toHaveProperty('type')
+        expect((json as any).components[0]).toHaveProperty('value')
+        expect((json as any).components[0].label).toEqual('label')
+        expect((json as any).components[0].type).toEqual('field')
+        expect((json as any).components[0].value).toEqual('foo-changed')
     })
 
     it('UIComponent.renderComponent() should add UITables', () => {
@@ -63,12 +63,12 @@ describe('UIComponent', () => {
         ]
         const testComponent = new TestComponent(rows)
         const json: Object = testComponent.renderComponent()
-        expect(json).toHaveProperty('tables')
-        expect((json as any).tables[0]).toHaveProperty('title')
-        expect((json as any).tables[0]).toHaveProperty('columns')
-        expect((json as any).tables[0]).toHaveProperty('type')
-        expect((json as any).tables[0]).toHaveProperty('value')
-        expect((json as any).tables[0].value[0]).toEqual(['d', '5', 'col1'])
+        expect(json).toHaveProperty('components')
+        expect((json as any).components[0]).toHaveProperty('title')
+        expect((json as any).components[0]).toHaveProperty('columns')
+        expect((json as any).components[0]).toHaveProperty('type')
+        expect((json as any).components[0]).toHaveProperty('value')
+        expect((json as any).components[0].value[0]).toEqual(['d', '5', 'col1'])
     })
 
     it('UIComponent.renderComponent() should add source field', () => {

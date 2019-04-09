@@ -3,25 +3,25 @@ export { table, TableArgs } from './decorators/table'
 export { field, FieldArgs } from './decorators/field'
 
 export interface Component {
-    fields: Array<any>
+    components: Array<any>
     source: any
-    tables: Array<any>
+    documentId: string
 }
 
 export default class UIComponent {
     renderComponent() {
         const component: Component = {
-            fields: [],
-            tables: [],
+            components: [],
+            documentId: '',
             source: ''
         }
 
         for (let k in this) {
             if (k.endsWith('UIField')) {
-                component.fields.push(this[k])
+                component.components.push(this[k])
             }
             if (k.endsWith('UITable')) {
-                component.tables.push(this[k])
+                component.components.push(this[k])
             }
             if (k === '_source') {
                 component.source = this[k]
