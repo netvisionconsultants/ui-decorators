@@ -78,24 +78,57 @@ function field(_a) {
     };
 }
 
+function link(_a) {
+    var label = _a.label, url = _a.url, transform = _a.transform;
+    return function (target, propName) {
+        Object.defineProperty(target, propName + "-UILink", {
+            get: function () {
+                return {
+                    label: label,
+                    type: 'link',
+                    url: transform ? transform(url) : url
+                };
+            },
+            enumerable: true
+        });
+    };
+}
+
+function documentId() {
+    return function (target, propName) {
+        Object.defineProperty(target, "_documentId", {
+            get: function () {
+                return this[propName];
+            },
+            enumerable: true
+        });
+    };
+}
+
 var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
     UIComponent.prototype.renderComponent = function () {
         var component = {
-            fields: [],
-            tables: [],
+            components: [],
+            documentId: '',
             source: ''
         };
         for (var k in this) {
             if (k.endsWith('UIField')) {
-                component.fields.push(this[k]);
+                component.components.push(this[k]);
             }
             if (k.endsWith('UITable')) {
-                component.tables.push(this[k]);
+                component.components.push(this[k]);
+            }
+            if (k.endsWith('UILink')) {
+                component.components.push(this[k]);
             }
             if (k === '_source') {
                 component.source = this[k];
+            }
+            if (k === '_documentId') {
+                component.documentId = this[k];
             }
         }
         return component;
@@ -104,5 +137,5 @@ var UIComponent = /** @class */ (function () {
 }());
 
 export default UIComponent;
-export { source, table, field };
+export { source, table, field, link, documentId };
 //# sourceMappingURL=ui-component.es5.js.map
