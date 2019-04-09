@@ -13,9 +13,19 @@ This project was the result of wanting to decorate TypeScript classes and member
 ### Usage
 
 ```typescript
-import UIComponent, { field } from "ui-decorators";
+import UIComponent, {
+    field,
+    link,
+    table,
+    documentId,
+    source
+} from "ui-decorators";
 
+@source('MyTodoList')
 export default class TodoItem extends UIComponent {
+    @documentId()
+    id: string;
+
     @field({ label: "Name", transform: val => val.toUpperCase() })
     itemName: string;
 
@@ -30,11 +40,12 @@ export default class TodoItem extends UIComponent {
     })
     subTasks: Array<String>
 
-    constructor(itemName: string, itemDescription: string, subTasks: Array<String>) {
+    constructor(itemName: string, itemDescription: string, subTasks: Array<String>, id: string) {
         super();
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.subTasks = subTasks;
+        this.id = id;
     }
 }
 const subTasks = [
@@ -42,7 +53,7 @@ const subTasks = [
     { id: 2, name: 'washCat', 'Give the cat a bath' },
     { id: 3, name: 'cleanRoom', 'Clean out my room' },
 ]
-const item = new TodoItem('Finish chores', 'Finish all of my chores', subTasks);
+const item = new TodoItem('Finish chores', 'Finish all of my chores', subTasks, 'uuid-1234');
 console.log(item.renderComponent());
 ```
 
@@ -50,7 +61,9 @@ Which will return a JSON object that looks like:
 
 ```json
 {
-    "fields": [
+    "source": "MyTodoList",
+    "documentId": "uuid-1234",
+    "components": [
         {
             "label": "Name",
             "type": "field",
@@ -60,9 +73,7 @@ Which will return a JSON object that looks like:
             "label": "Description",
             "type": "field",
             "value": "Finish all of my chores"
-        }
-    ],
-    "tables": [
+        },
         {
             "title": "Sub Tasks",
             "columns": ["id", "name", "description"],
@@ -73,6 +84,6 @@ Which will return a JSON object that looks like:
                 [1, "washDog", "Give the dog a bath"]
             ]
         }
-    ]
+    ],
 }
 ```

@@ -5,7 +5,7 @@ export { field, FieldArgs } from './decorators/field'
 export interface Component {
     components: Array<any>
     source: any
-    documentId: string
+    documentId: any
 }
 
 export default class UIComponent {
@@ -28,6 +28,9 @@ export default class UIComponent {
             }
             if (k === '_source') {
                 component.source = this[k]
+            }
+            if (k === '_documentId') {
+                component.documentId = this[k]
             }
         }
         return component
