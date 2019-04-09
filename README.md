@@ -3,7 +3,7 @@
 A TypeScript project to decorate classes with UI annotations.
 
 ### Docs
-https://netvisionconsultants.github.io/ui-decorators/docs/
+https://netvisionconsultants.github.io/ui-decorators
 
 ### Why?
 
