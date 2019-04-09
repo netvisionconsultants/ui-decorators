@@ -919,18 +919,21 @@ img { max-width: 100%; }
 			<a href="component.html" class="tsd-kind-icon">Component</a>
 			<ul>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="component.html#fields" class="tsd-kind-icon">fields</a>
+					<a href="component.html#components" class="tsd-kind-icon">components</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="component.html#documentid" class="tsd-kind-icon">document<wbr>Id</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
 					<a href="component.html#source" class="tsd-kind-icon">source</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="component.html#tables" class="tsd-kind-icon">tables</a>
 				</li>
 			</ul>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="fieldargs.html" class="tsd-kind-icon">Field<wbr>Args</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="linkargs.html" class="tsd-kind-icon">Link<wbr>Args</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="tableargs.html" class="tsd-kind-icon">Table<wbr>Args</a>
@@ -939,7 +942,13 @@ img { max-width: 100%; }
 			<a href="../globals.html#createtable" class="tsd-kind-icon">create<wbr>Table</a>
 		</li>
 		<li class=" tsd-kind-function">
+			<a href="../globals.html#documentid" class="tsd-kind-icon">document<wbr>Id</a>
+		</li>
+		<li class=" tsd-kind-function">
 			<a href="../globals.html#field" class="tsd-kind-icon">field</a>
+		</li>
+		<li class=" tsd-kind-function">
+			<a href="../globals.html#link" class="tsd-kind-icon">link</a>
 		</li>
 		<li class=" tsd-kind-function">
 			<a href="../globals.html#source" class="tsd-kind-icon">source</a>
@@ -966,9 +975,9 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="component.html#fields" class="tsd-kind-icon">fields</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="component.html#components" class="tsd-kind-icon">components</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="component.html#documentid" class="tsd-kind-icon">document<wbr>Id</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="component.html#source" class="tsd-kind-icon">source</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="component.html#tables" class="tsd-kind-icon">tables</a></li>
 						</ul>
 					</section>
 				</div>
@@ -977,12 +986,22 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="fields" class="tsd-anchor"></a>
-				<h3>fields</h3>
-				<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<a name="components" class="tsd-anchor"></a>
+				<h3>components</h3>
+				<div class="tsd-signature tsd-kind-icon">components<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/a4f2f89/src/ui-component.ts#L7">ui-component.ts:7</a></li>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/3a8870b/src/ui-component.ts#L8">ui-component.ts:8</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="documentid" class="tsd-anchor"></a>
+				<h3>document<wbr>Id</h3>
+				<div class="tsd-signature tsd-kind-icon">document<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/3a8870b/src/ui-component.ts#L10">ui-component.ts:10</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -992,17 +1011,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">source<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/a4f2f89/src/ui-component.ts#L8">ui-component.ts:8</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="tables" class="tsd-anchor"></a>
-				<h3>tables</h3>
-				<div class="tsd-signature tsd-kind-icon">tables<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/a4f2f89/src/ui-component.ts#L9">ui-component.ts:9</a></li>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/3a8870b/src/ui-component.ts#L9">ui-component.ts:9</a></li>
 					</ul>
 				</aside>
 			</section>
