@@ -2,6 +2,7 @@ import {} from 'ts-jest'
 import UIComponent from '../src/ui-component'
 import { table, SortOrder } from '../src/decorators/table'
 import { field, FieldArgs } from '../src/decorators/field'
+import { link, LinkArgs } from '../src/decorators/link'
 import { source } from '../src/decorators/source'
 
 describe('UIComponent', () => {
@@ -85,6 +86,28 @@ describe('UIComponent', () => {
         const testComponent = new TestComponent('foo')
         const json: Object = testComponent.renderComponent()
         expect(json).toHaveProperty('source')
+        expect((json as any).source).toEqual('Telegeography')
+    })
+    it('UIComponent.renderComponent() should add link field', () => {
+        @source('Telegeography')
+        class TestComponent extends UIComponent {
+            @field({ label: 'label', transform: val => `${val}-changed` })
+            foo: string
+
+            @link({ label: 'label', url: 'http://www.google.com' })
+            foo2: string
+
+            constructor(foo: string, foo2: string) {
+                super()
+                this.foo = foo
+                this.foo2 = foo2
+            }
+        }
+        const testComponent = new TestComponent('foo', 'google')
+        const json: Object = testComponent.renderComponent()
+        expect((json as any).components[1]).toHaveProperty('type')
+        expect((json as any).components[1].type).toEqual('link')
+        expect((json as any).components[1].url).toEqual('http://www.google.com')
         expect((json as any).source).toEqual('Telegeography')
     })
 })

@@ -23,6 +23,9 @@ export default class UIComponent {
             if (k.endsWith('UITable')) {
                 component.components.push(this[k])
             }
+            if (k.endsWith('UILink')) {
+                component.components.push(this[k])
+            }
             if (k === '_source') {
                 component.source = this[k]
             }
