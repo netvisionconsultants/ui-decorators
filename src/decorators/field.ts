@@ -3,9 +3,16 @@ export interface FieldArgs {
     displayEmpty?: boolean
     longValue?: boolean
     transform?: (val: any) => string
+    section?: string
 }
 
-export function field({ label, displayEmpty = false, longValue = false, transform }: FieldArgs) {
+export function field({
+    label,
+    displayEmpty = false,
+    longValue = false,
+    transform,
+    section
+}: FieldArgs) {
     return function(target: Object, propName: string) {
         Object.defineProperty(target, `${propName}-UIField`, {
             get() {
@@ -14,7 +21,8 @@ export function field({ label, displayEmpty = false, longValue = false, transfor
                     longValue,
                     displayEmpty,
                     type: 'field',
-                    value: transform ? transform(this[propName]) : this[propName]
+                    value: transform ? transform(this[propName]) : this[propName],
+                    ...(section && { section })
                 }
             },
             enumerable: true

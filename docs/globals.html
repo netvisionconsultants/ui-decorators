@@ -925,6 +925,9 @@ img { max-width: 100%; }
 			<a href="interfaces/linkargs.html" class="tsd-kind-icon">Link<wbr>Args</a>
 		</li>
 		<li class=" tsd-kind-interface">
+			<a href="interfaces/section.html" class="tsd-kind-icon">Section</a>
+		</li>
+		<li class=" tsd-kind-interface">
 			<a href="interfaces/tableargs.html" class="tsd-kind-icon">Table<wbr>Args</a>
 		</li>
 		<li class=" tsd-kind-function">
@@ -935,6 +938,9 @@ img { max-width: 100%; }
 		</li>
 		<li class=" tsd-kind-function">
 			<a href="globals.html#field" class="tsd-kind-icon">field</a>
+		</li>
+		<li class=" tsd-kind-function">
+			<a href="globals.html#hassection" class="tsd-kind-icon">has<wbr>Section</a>
 		</li>
 		<li class=" tsd-kind-function">
 			<a href="globals.html#link" class="tsd-kind-icon">link</a>
@@ -953,7 +959,7 @@ img { max-width: 100%; }
 			<h1 id="ui-decorators">UI Decorators</h1>
 			<p>A TypeScript project to decorate classes with UI annotations.</p>
 			<h3 id="docs">Docs</h3>
-			<p><a href="https://netvisionconsultants.github.io/ui-decorators/docs/">https://netvisionconsultants.github.io/ui-decorators/docs/</a></p>
+			<p><a href="https://netvisionconsultants.github.io/ui-decorators">https://netvisionconsultants.github.io/ui-decorators</a></p>
 			<h3 id="why-">Why?</h3>
 			<p>This project was the result of wanting to decorate TypeScript classes and members with UI specific code for rendering in a web application. This allows the developer to create a plain TypeScript class as a data transfer object, but adds an additional <code>renderComponent()</code> method which will provide the UI specific rendering of the object. This object can then be passed to a web application for dynamic result rendering.</p>
 			<h3 id="usage">Usage</h3>
@@ -1049,6 +1055,7 @@ img { max-width: 100%; }
 							<li class="tsd-kind-interface"><a href="interfaces/component.html" class="tsd-kind-icon">Component</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/fieldargs.html" class="tsd-kind-icon">Field<wbr>Args</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/linkargs.html" class="tsd-kind-icon">Link<wbr>Args</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/section.html" class="tsd-kind-icon">Section</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/tableargs.html" class="tsd-kind-icon">Table<wbr>Args</a></li>
 						</ul>
 					</section>
@@ -1058,6 +1065,7 @@ img { max-width: 100%; }
 							<li class="tsd-kind-function"><a href="globals.html#createtable" class="tsd-kind-icon">create<wbr>Table</a></li>
 							<li class="tsd-kind-function"><a href="globals.html#documentid" class="tsd-kind-icon">document<wbr>Id</a></li>
 							<li class="tsd-kind-function"><a href="globals.html#field" class="tsd-kind-icon">field</a></li>
+							<li class="tsd-kind-function"><a href="globals.html#hassection" class="tsd-kind-icon">has<wbr>Section</a></li>
 							<li class="tsd-kind-function"><a href="globals.html#link" class="tsd-kind-icon">link</a></li>
 							<li class="tsd-kind-function"><a href="globals.html#source" class="tsd-kind-icon">source</a></li>
 							<li class="tsd-kind-function"><a href="globals.html#table" class="tsd-kind-icon">table</a></li>
@@ -1078,7 +1086,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/3a8870b/src/decorators/table.ts#L14">decorators/table.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/table.ts#L15">decorators/table.ts:15</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1113,7 +1121,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/3a8870b/src/decorators/documentId.ts#L1">decorators/documentId.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/documentId.ts#L1">decorators/documentId.ts:1</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -1130,7 +1138,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/3a8870b/src/decorators/field.ts#L8">decorators/field.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/field.ts#L9">decorators/field.ts:9</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1148,7 +1156,41 @@ img { max-width: 100%; }
 										<h5>long<wbr>Value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
 									</li>
 									<li class="tsd-parameter">
+										<h5>section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
 										<h5>transform<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function">
+				<a name="hassection" class="tsd-anchor"></a>
+				<h3>has<wbr>Section</h3>
+				<ul class="tsd-signatures tsd-kind-function">
+					<li class="tsd-signature tsd-kind-icon">has<wbr>Section<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/section.ts#L6">decorators/section.ts:6</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-type">object</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>title<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 									</li>
 								</ul>
 							</li>
@@ -1167,7 +1209,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/3a8870b/src/decorators/link.ts#L7">decorators/link.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/link.ts#L8">decorators/link.ts:8</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1177,6 +1219,9 @@ img { max-width: 100%; }
 								<ul class="tsd-parameters">
 									<li class="tsd-parameter">
 										<h5>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									</li>
 									<li class="tsd-parameter">
 										<h5>transform<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
@@ -1201,7 +1246,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/3a8870b/src/decorators/source.ts#L1">decorators/source.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/source.ts#L1">decorators/source.ts:1</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1224,7 +1269,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/3a8870b/src/decorators/table.ts#L60">decorators/table.ts:60</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/table.ts#L61">decorators/table.ts:61</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1234,6 +1279,9 @@ img { max-width: 100%; }
 								<ul class="tsd-parameters">
 									<li class="tsd-parameter">
 										<h5>columns<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									</li>
 									<li class="tsd-parameter">
 										<h5>sort<wbr>Order<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="enums/sortorder.html#asc" class="tsd-signature-type">ASC</a><span class="tsd-signature-symbol"> | </span><a href="enums/sortorder.html#desc" class="tsd-signature-type">DESC</a></h5>

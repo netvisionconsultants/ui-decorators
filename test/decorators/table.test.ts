@@ -33,7 +33,8 @@ describe('table() decorator', () => {
         const args: TableArgs = {
             title: 'Table Title',
             columns: ['col3', 'col2', 'col1'],
-            sortingColumn: 'col3'
+            sortingColumn: 'col3',
+            section: 'section1'
         }
         table(args)(target, prop)
         const testTable: Object = target['testProp-UITable']

@@ -4,6 +4,7 @@ export interface TableArgs {
     sortOrder?: SortOrder
     sortingColumn?: String
     transform?: (val: Array<any>) => Array<any>
+    section?: string
 }
 
 export enum SortOrder {
@@ -57,7 +58,7 @@ export function createTable(
     return transform ? transform(sortedRows) : sortedRows
 }
 
-export function table({ title, columns, sortOrder, sortingColumn, transform }: TableArgs) {
+export function table({ title, columns, sortOrder, sortingColumn, transform, section }: TableArgs) {
     return function(target: Object, propName: string) {
         Object.defineProperty(target, `${propName}-UITable`, {
             get() {
@@ -65,7 +66,14 @@ export function table({ title, columns, sortOrder, sortingColumn, transform }: T
                     title,
                     columns,
                     type: 'table',
-                    value: createTable(this[propName], columns, sortOrder, sortingColumn, transform)
+                    value: createTable(
+                        this[propName],
+                        columns,
+                        sortOrder,
+                        sortingColumn,
+                        transform
+                    ),
+                    ...(section && { section })
                 }
             },
             enumerable: true

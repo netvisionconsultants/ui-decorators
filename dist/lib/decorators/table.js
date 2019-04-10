@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var SortOrder;
 (function (SortOrder) {
@@ -41,16 +52,12 @@ function createTable(rows, columns, sortOrder, sortingColumn, transform) {
 }
 exports.createTable = createTable;
 function table(_a) {
-    var title = _a.title, columns = _a.columns, sortOrder = _a.sortOrder, sortingColumn = _a.sortingColumn, transform = _a.transform;
+    var title = _a.title, columns = _a.columns, sortOrder = _a.sortOrder, sortingColumn = _a.sortingColumn, transform = _a.transform, section = _a.section;
     return function (target, propName) {
         Object.defineProperty(target, propName + "-UITable", {
             get: function () {
-                return {
-                    title: title,
-                    columns: columns,
-                    type: 'table',
-                    value: createTable(this[propName], columns, sortOrder, sortingColumn, transform)
-                };
+                return __assign({ title: title,
+                    columns: columns, type: 'table', value: createTable(this[propName], columns, sortOrder, sortingColumn, transform) }, (section && { section: section }));
             },
             enumerable: true
         });
