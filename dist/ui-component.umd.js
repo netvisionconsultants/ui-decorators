@@ -4,6 +4,12 @@
     (factory((global.uiComponent = {})));
 }(this, (function (exports) { 'use strict';
 
+    function source(name) {
+        return function (constructor) {
+            constructor.prototype._source = name;
+        };
+    }
+
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
     Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -29,12 +35,6 @@
         };
         return __assign.apply(this, arguments);
     };
-
-    function source(name) {
-        return function (constructor) {
-            constructor.prototype._source = name;
-        };
-    }
 
     var SortOrder;
     (function (SortOrder) {
@@ -139,19 +139,20 @@
         function UIComponent() {
         }
         UIComponent.prototype.renderComponent = function () {
+            var sections = {};
             var body = {
                 components: [],
                 documentId: '',
                 source: ''
             };
-            if (this['_hasSections']) {
-                this['sections'] = this['_hasSections'];
-            }
             for (var k in this) {
                 if (k.endsWith('UIField') || k.endsWith('UITable') || k.endsWith('UILink')) {
                     var component = this[k];
                     if (component.section) {
-                        this['sections'][component.section].components.push(this[k]);
+                        if (!sections[component.section]) {
+                            sections[component.section] = { components: [] };
+                        }
+                        sections[component.section].components.push(this[k]);
                     }
                     else {
                         body.components.push(component);
@@ -164,8 +165,12 @@
                     body.documentId = this[k];
                 }
             }
-            for (var key in this['sections']) {
-                body.components.push(__assign({ type: 'section' }, this['sections'][key]));
+            for (var key in sections) {
+                body.components.push({
+                    type: 'section',
+                    title: this['_hasSections'][key].title,
+                    components: sections[key].components
+                });
             }
             return body;
         };

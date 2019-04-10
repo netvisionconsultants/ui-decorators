@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var source_1 = require("./decorators/source");
 exports.source = source_1.source;
@@ -27,19 +16,20 @@ var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
     UIComponent.prototype.renderComponent = function () {
+        var sections = {};
         var body = {
             components: [],
             documentId: '',
             source: ''
         };
-        if (this['_hasSections']) {
-            this['sections'] = this['_hasSections'];
-        }
         for (var k in this) {
             if (k.endsWith('UIField') || k.endsWith('UITable') || k.endsWith('UILink')) {
                 var component = this[k];
                 if (component.section) {
-                    this['sections'][component.section].components.push(this[k]);
+                    if (!sections[component.section]) {
+                        sections[component.section] = { components: [] };
+                    }
+                    sections[component.section].components.push(this[k]);
                 }
                 else {
                     body.components.push(component);
@@ -52,8 +42,12 @@ var UIComponent = /** @class */ (function () {
                 body.documentId = this[k];
             }
         }
-        for (var key in this['sections']) {
-            body.components.push(__assign({ type: 'section' }, this['sections'][key]));
+        for (var key in sections) {
+            body.components.push({
+                type: 'section',
+                title: this['_hasSections'][key].title,
+                components: sections[key].components
+            });
         }
         return body;
     };

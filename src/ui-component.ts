@@ -13,21 +13,21 @@ export interface Component {
 
 export default class UIComponent {
     renderComponent() {
+        let sections: any = {}
         const body: Component = {
             components: [],
             documentId: '',
             source: ''
         }
 
-        if ((this as any)['_hasSections']) {
-            ;(this as any)['sections'] = (this as any)['_hasSections']
-        }
-
         for (let k in this) {
             if (k.endsWith('UIField') || k.endsWith('UITable') || k.endsWith('UILink')) {
                 const component: any = this[k]
                 if (component.section) {
-                    ;(this as any)['sections'][component.section].components.push(this[k])
+                    if (!sections[component.section]) {
+                        sections[component.section] = { components: [] }
+                    }
+                    sections[component.section].components.push(this[k])
                 } else {
                     body.components.push(component)
                 }
@@ -39,10 +39,11 @@ export default class UIComponent {
                 body.documentId = this[k]
             }
         }
-        for (const key in (this as any)['sections']) {
+        for (const key in sections) {
             body.components.push({
                 type: 'section',
-                ...(this as any)['sections'][key]
+                title: (this as any)['_hasSections'][key].title,
+                components: sections[key].components
             })
         }
         return body
