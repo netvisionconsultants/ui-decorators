@@ -19,7 +19,7 @@ var UIComponent = /** @class */ (function () {
         var sections = {};
         var body = {
             components: [],
-            sections: {},
+            sections: [],
             documentId: '',
             source: ''
         };
@@ -44,11 +44,12 @@ var UIComponent = /** @class */ (function () {
             }
         }
         for (var key in sections) {
-            body.sections[key] = {
+            body.sections.push({
                 type: 'section',
                 title: this['_hasSections'][key].title,
+                order: this['_hasSections'][key].order,
                 components: sections[key].components
-            };
+            });
         }
         return body;
     };

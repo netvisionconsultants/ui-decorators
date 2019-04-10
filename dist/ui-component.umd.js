@@ -126,12 +126,12 @@
     }
 
     function hasSection(_a) {
-        var name = _a.name, title = _a.title;
+        var name = _a.name, title = _a.title, order = _a.order;
         return function (constructor) {
             if (!constructor.prototype._hasSections) {
                 constructor.prototype._hasSections = {};
             }
-            constructor.prototype._hasSections[name] = { name: name, title: title, components: [] };
+            constructor.prototype._hasSections[name] = { name: name, title: title, order: order, components: [] };
         };
     }
 
@@ -142,7 +142,7 @@
             var sections = {};
             var body = {
                 components: [],
-                sections: {},
+                sections: [],
                 documentId: '',
                 source: ''
             };
@@ -167,11 +167,12 @@
                 }
             }
             for (var key in sections) {
-                body.sections[key] = {
+                body.sections.push({
                     type: 'section',
                     title: this['_hasSections'][key].title,
+                    order: this['_hasSections'][key].order,
                     components: sections[key].components
-                };
+                });
             }
             return body;
         };
