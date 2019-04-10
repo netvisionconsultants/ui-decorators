@@ -133,20 +133,19 @@ var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
     UIComponent.prototype.renderComponent = function () {
-        var sections;
         var body = {
             components: [],
             documentId: '',
             source: ''
         };
         if (this['_hasSections']) {
-            sections = this['_hasSections'];
+            this['sections'] = this['_hasSections'];
         }
         for (var k in this) {
             if (k.endsWith('UIField') || k.endsWith('UITable') || k.endsWith('UILink')) {
                 var component = this[k];
                 if (component.section) {
-                    sections[component.section].components.push(this[k]);
+                    this['sections'][component.section].components.push(this[k]);
                 }
                 else {
                     body.components.push(component);
@@ -159,8 +158,8 @@ var UIComponent = /** @class */ (function () {
                 body.documentId = this[k];
             }
         }
-        for (var key in sections) {
-            body.components.push(__assign({ type: 'section' }, sections[key]));
+        for (var key in this['sections']) {
+            body.components.push(__assign({ type: 'section' }, this['sections'][key]));
         }
         return body;
     };
