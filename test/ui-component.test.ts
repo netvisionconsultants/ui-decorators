@@ -138,7 +138,7 @@ describe('UIComponent', () => {
     })
     it('UIComponent.renderComponent() should add sections', () => {
         @source('Telegeography')
-        @hasSection({ name: 'section1', title: 'Section One' })
+        @hasSection({ name: 'section1', title: 'Section One', order: 1 })
         class TestComponent extends UIComponent {
             @field({ label: 'foo field', section: 'section1' })
             foo: string
@@ -164,9 +164,8 @@ describe('UIComponent', () => {
         const json: any = testComponent.renderComponent()
         expect(json).toHaveProperty('components')
         expect(json).toHaveProperty('sections')
-        expect(json.sections).toHaveProperty('section1')
-        expect(json.sections.section1).toHaveProperty('components')
-        expect(json.sections.section1.components).toHaveLength(2)
+        expect(json.sections).toHaveLength(1)
+        expect(json.sections[0].components).toHaveLength(2)
         expect(json.components).toHaveLength(1)
         expect(json.components[0]).toEqual({
             displayEmpty: false,
@@ -178,8 +177,8 @@ describe('UIComponent', () => {
     })
     it('UIComponent.renderComponent() adds multiple sections', () => {
         @source('Telegeography')
-        @hasSection({ name: 'section1', title: 'Section One' })
-        @hasSection({ name: 'section2', title: 'Section Two' })
+        @hasSection({ name: 'section1', title: 'Section One', order: 1 })
+        @hasSection({ name: 'section2', title: 'Section Two', order: 2 })
         class TestComponent extends UIComponent {
             @field({ label: 'foo field', section: 'section1' })
             foo: string
@@ -205,9 +204,8 @@ describe('UIComponent', () => {
         const json: any = testComponent.renderComponent()
         expect(json).toHaveProperty('components')
         expect(json).toHaveProperty('sections')
-        expect(json.sections).toHaveProperty('section1')
-        expect(json.sections.section1).toHaveProperty('components')
-        expect(json.sections.section1.components).toHaveLength(1)
+        expect(json.sections).toHaveLength(2)
+        expect(json.sections[0].components).toHaveLength(1)
         expect(json.components).toHaveLength(1)
         expect(json.components[0]).toEqual({
             displayEmpty: false,
@@ -221,9 +219,8 @@ describe('UIComponent', () => {
         const json2: any = testComponent.renderComponent()
         expect(json2).toHaveProperty('components')
         expect(json).toHaveProperty('sections')
-        expect(json.sections).toHaveProperty('section2')
-        expect(json.sections.section2).toHaveProperty('components')
-        expect(json.sections.section2.components).toHaveLength(1)
+        expect(json.sections[1]).toHaveProperty('components')
+        expect(json.sections[1].components).toHaveLength(1)
         expect(json2.components).toHaveLength(1)
         expect(json2.components[0]).toEqual({
             displayEmpty: false,

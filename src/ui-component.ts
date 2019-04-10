@@ -17,7 +17,7 @@ export default class UIComponent {
         let sections: any = {}
         const body: Component = {
             components: [],
-            sections: {},
+            sections: [],
             documentId: '',
             source: ''
         }
@@ -42,12 +42,12 @@ export default class UIComponent {
             }
         }
         for (const key in sections) {
-            body.sections[key] = {
+            body.sections.push({
                 type: 'section',
                 title: (this as any)['_hasSections'][key].title,
                 order: (this as any)['_hasSections'][key].order,
                 components: sections[key].components
-            }
+            })
         }
         return body
     }
