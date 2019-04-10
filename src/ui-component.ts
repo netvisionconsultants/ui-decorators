@@ -9,6 +9,7 @@ export interface Component {
     components: Array<any>
     source: any
     documentId: any
+    sections: any
 }
 
 export default class UIComponent {
@@ -16,6 +17,7 @@ export default class UIComponent {
         let sections: any = {}
         const body: Component = {
             components: [],
+            sections: {},
             documentId: '',
             source: ''
         }
@@ -40,11 +42,11 @@ export default class UIComponent {
             }
         }
         for (const key in sections) {
-            body.components.push({
+            body.sections[key] = {
                 type: 'section',
                 title: (this as any)['_hasSections'][key].title,
                 components: sections[key].components
-            })
+            }
         }
         return body
     }

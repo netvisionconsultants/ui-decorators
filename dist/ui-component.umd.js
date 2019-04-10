@@ -142,6 +142,7 @@
             var sections = {};
             var body = {
                 components: [],
+                sections: {},
                 documentId: '',
                 source: ''
             };
@@ -166,11 +167,11 @@
                 }
             }
             for (var key in sections) {
-                body.components.push({
+                body.sections[key] = {
                     type: 'section',
                     title: this['_hasSections'][key].title,
                     components: sections[key].components
-                });
+                };
             }
             return body;
         };

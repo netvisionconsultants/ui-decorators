@@ -19,6 +19,7 @@ var UIComponent = /** @class */ (function () {
         var sections = {};
         var body = {
             components: [],
+            sections: {},
             documentId: '',
             source: ''
         };
@@ -43,11 +44,11 @@ var UIComponent = /** @class */ (function () {
             }
         }
         for (var key in sections) {
-            body.components.push({
+            body.sections[key] = {
                 type: 'section',
                 title: this['_hasSections'][key].title,
                 components: sections[key].components
-            });
+            };
         }
         return body;
     };
