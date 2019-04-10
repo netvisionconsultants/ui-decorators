@@ -45,6 +45,7 @@ export default class UIComponent {
             body.sections[key] = {
                 type: 'section',
                 title: (this as any)['_hasSections'][key].title,
+                order: (this as any)['_hasSections'][key].order,
                 components: sections[key].components
             }
         }

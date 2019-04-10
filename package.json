@@ -1,6 +1,6 @@
 {
   "name": "ui-decorators",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "keywords": [],
   "main": "dist/ui-component.umd.js",
