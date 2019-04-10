@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TableArgs | ui-decorators</title>
+	<title>Section | ui-decorators</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -924,31 +924,19 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-interface">
 			<a href="linkargs.html" class="tsd-kind-icon">Link<wbr>Args</a>
 		</li>
-		<li class=" tsd-kind-interface">
-			<a href="section.html" class="tsd-kind-icon">Section</a>
-		</li>
 		<li class="current tsd-kind-interface">
-			<a href="tableargs.html" class="tsd-kind-icon">Table<wbr>Args</a>
+			<a href="section.html" class="tsd-kind-icon">Section</a>
 			<ul>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="tableargs.html#columns" class="tsd-kind-icon">columns</a>
+					<a href="section.html#name" class="tsd-kind-icon">name</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="tableargs.html#section" class="tsd-kind-icon">section</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="tableargs.html#sortorder" class="tsd-kind-icon">sort<wbr>Order</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="tableargs.html#sortingcolumn" class="tsd-kind-icon">sorting<wbr>Column</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="tableargs.html#title" class="tsd-kind-icon">title</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="tableargs.html#transform" class="tsd-kind-icon">transform</a>
+					<a href="section.html#title" class="tsd-kind-icon">title</a>
 				</li>
 			</ul>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="tableargs.html" class="tsd-kind-icon">Table<wbr>Args</a>
 		</li>
 		<li class=" tsd-kind-function">
 			<a href="../globals.html#createtable" class="tsd-kind-icon">create<wbr>Table</a>
@@ -979,7 +967,7 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">TableArgs</span>
+					<span class="target">Section</span>
 				</li>
 			</ul>
 		</section>
@@ -990,12 +978,8 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tableargs.html#columns" class="tsd-kind-icon">columns</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tableargs.html#section" class="tsd-kind-icon">section</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tableargs.html#sortorder" class="tsd-kind-icon">sort<wbr>Order</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tableargs.html#sortingcolumn" class="tsd-kind-icon">sorting<wbr>Column</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tableargs.html#title" class="tsd-kind-icon">title</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tableargs.html#transform" class="tsd-kind-icon">transform</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="section.html#name" class="tsd-kind-icon">name</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="section.html#title" class="tsd-kind-icon">title</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1004,42 +988,12 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="columns" class="tsd-anchor"></a>
-				<h3>columns</h3>
-				<div class="tsd-signature tsd-kind-icon">columns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<a name="name" class="tsd-anchor"></a>
+				<h3>name</h3>
+				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/table.ts#L3">decorators/table.ts:3</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="section" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> section</h3>
-				<div class="tsd-signature tsd-kind-icon">section<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/table.ts#L7">decorators/table.ts:7</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="sortorder" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> sort<wbr>Order</h3>
-				<div class="tsd-signature tsd-kind-icon">sort<wbr>Order<span class="tsd-signature-symbol">:</span> <a href="../enums/sortorder.html" class="tsd-signature-type">SortOrder</a></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/table.ts#L4">decorators/table.ts:4</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="sortingcolumn" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> sorting<wbr>Column</h3>
-				<div class="tsd-signature tsd-kind-icon">sorting<wbr>Column<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">String</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/table.ts#L5">decorators/table.ts:5</a></li>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/section.ts#L2">decorators/section.ts:2</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1049,17 +1003,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/table.ts#L2">decorators/table.ts:2</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="transform" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> transform</h3>
-				<div class="tsd-signature tsd-kind-icon">transform<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/table.ts#L6">decorators/table.ts:6</a></li>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/c88271b/src/decorators/section.ts#L3">decorators/section.ts:3</a></li>
 					</ul>
 				</aside>
 			</section>
