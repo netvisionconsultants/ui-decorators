@@ -5,6 +5,7 @@ import { field, FieldArgs } from '../src/decorators/field'
 import { link, LinkArgs } from '../src/decorators/link'
 import { documentId } from '../src/decorators/documentId'
 import { source } from '../src/decorators/source'
+import { hasSection } from '../src/decorators/section'
 
 describe('UIComponent', () => {
     it('UIComponent is instantiable', () => {
@@ -134,5 +135,84 @@ describe('UIComponent', () => {
         const json: Object = testComponent.renderComponent()
         expect(json as any).toHaveProperty('documentId')
         expect((json as any).documentId).toEqual('abcd1234')
+    })
+    it('UIComponent.renderComponent() should add sections', () => {
+        @source('Telegeography')
+        @hasSection({ name: 'section1', title: 'Section One' })
+        class TestComponent extends UIComponent {
+            @field({ label: 'foo field', section: 'section1' })
+            foo: string
+
+            @link({ label: 'foo2 link', url: 'http://www.google.com', section: 'section1' })
+            foo2: string
+
+            @field({ label: 'foo3 no section' })
+            foo3: string
+
+            @documentId()
+            id: string
+
+            constructor(foo: string, foo2: string, foo3: string, id: string) {
+                super()
+                this.foo = foo
+                this.foo2 = foo2
+                this.foo3 = foo3
+                this.id = id
+            }
+        }
+        const testComponent = new TestComponent('foo', 'google', 'foo3', 'abcd1234')
+        const json: any = testComponent.renderComponent()
+        expect(json).toHaveProperty('components')
+        expect(json.components).toHaveLength(2)
+        expect(json.components[0]).toEqual({
+            displayEmpty: false,
+            label: 'foo3 no section',
+            longValue: false,
+            type: 'field',
+            value: 'foo3'
+        })
+        expect(json.components[1].type).toEqual('section')
+        expect(json.components[1].title).toEqual('Section One')
+    })
+    it('UIComponent.renderComponent() adds multiple sections', () => {
+        @source('Telegeography')
+        @hasSection({ name: 'section1', title: 'Section One' })
+        @hasSection({ name: 'section2', title: 'Section Two' })
+        class TestComponent extends UIComponent {
+            @field({ label: 'foo field', section: 'section1' })
+            foo: string
+
+            @link({ label: 'foo2 link', url: 'http://www.google.com', section: 'section2' })
+            foo2: string
+
+            @field({ label: 'foo3 no section' })
+            foo3: string
+
+            @documentId()
+            id: string
+
+            constructor(foo: string, foo2: string, foo3: string, id: string) {
+                super()
+                this.foo = foo
+                this.foo2 = foo2
+                this.foo3 = foo3
+                this.id = id
+            }
+        }
+        const testComponent = new TestComponent('foo', 'google', 'foo3', 'abcd1234')
+        const json: any = testComponent.renderComponent()
+        expect(json).toHaveProperty('components')
+        expect(json.components).toHaveLength(3)
+        expect(json.components[0]).toEqual({
+            displayEmpty: false,
+            label: 'foo3 no section',
+            longValue: false,
+            type: 'field',
+            value: 'foo3'
+        })
+        expect(json.components[1].type).toEqual('section')
+        expect(json.components[1].title).toEqual('Section Two')
+        expect(json.components[2].type).toEqual('section')
+        expect(json.components[2].title).toEqual('Section One')
     })
 })
