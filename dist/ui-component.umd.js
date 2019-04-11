@@ -125,6 +125,23 @@
         };
     }
 
+    function documentName() {
+        return function (target, propName) {
+            Object.defineProperty(target, "_documentName", {
+                get: function () {
+                    return this[propName];
+                },
+                enumerable: true
+            });
+        };
+    }
+
+    function documentType(type) {
+        return function (constructor) {
+            constructor.prototype._documentType = type;
+        };
+    }
+
     function hasSection(_a) {
         var name = _a.name, title = _a.title, order = _a.order;
         return function (constructor) {
@@ -193,6 +210,8 @@
     exports.field = field;
     exports.link = link;
     exports.documentId = documentId;
+    exports.documentName = documentName;
+    exports.documentType = documentType;
     exports.hasSection = hasSection;
 
     Object.defineProperty(exports, '__esModule', { value: true });
