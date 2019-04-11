@@ -4,6 +4,8 @@ import { table, SortOrder } from '../src/decorators/table'
 import { field, FieldArgs } from '../src/decorators/field'
 import { link, LinkArgs } from '../src/decorators/link'
 import { documentId } from '../src/decorators/documentId'
+import { documentName } from '../src/decorators/documentName'
+import { documentType } from '../src/decorators/documentType'
 import { source } from '../src/decorators/source'
 import { hasSection } from '../src/decorators/section'
 
@@ -90,6 +92,23 @@ describe('UIComponent', () => {
         expect(json).toHaveProperty('source')
         expect((json as any).source).toEqual('Telegeography')
     })
+    it('UIComponent.renderComponent() should add documentType', () => {
+        @source('Telegeography')
+        @documentType('cable')
+        class TestComponent extends UIComponent {
+            @field({ label: 'label', transform: val => `${val}-changed` })
+            foo: string
+
+            constructor(foo: string) {
+                super()
+                this.foo = foo
+            }
+        }
+        const testComponent = new TestComponent('foo')
+        const json: Object = testComponent.renderComponent()
+        expect(json).toHaveProperty('documentType')
+        expect((json as any).documentType).toEqual('cable')
+    })
     it('UIComponent.renderComponent() should add link field', () => {
         @source('Telegeography')
         class TestComponent extends UIComponent {
@@ -135,6 +154,30 @@ describe('UIComponent', () => {
         const json: Object = testComponent.renderComponent()
         expect(json as any).toHaveProperty('documentId')
         expect((json as any).documentId).toEqual('abcd1234')
+    })
+    it('UIComponent.renderComponent() should add documentName field', () => {
+        @source('Telegeography')
+        class TestComponent extends UIComponent {
+            @field({ label: 'label', transform: val => `${val}-changed` })
+            foo: string
+
+            @link({ label: 'label', url: 'http://www.google.com' })
+            foo2: string
+
+            @documentName()
+            id: string
+
+            constructor(foo: string, foo2: string, id: string) {
+                super()
+                this.foo = foo
+                this.foo2 = foo2
+                this.id = id
+            }
+        }
+        const testComponent = new TestComponent('foo', 'google', 'abcd1234')
+        const json: Object = testComponent.renderComponent()
+        expect(json as any).toHaveProperty('documentId')
+        expect((json as any).documentName).toEqual('abcd1234')
     })
     it('UIComponent.renderComponent() should add sections', () => {
         @source('Telegeography')

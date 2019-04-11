@@ -138,6 +138,8 @@ var UIComponent = /** @class */ (function () {
             components: [],
             sections: [],
             documentId: '',
+            documentName: '',
+            documentType: '',
             source: ''
         };
         for (var k in this) {
@@ -153,11 +155,17 @@ var UIComponent = /** @class */ (function () {
                     body.components.push(component);
                 }
             }
-            if (k === '_source') {
+            else if (k === '_source') {
                 body.source = this[k];
             }
-            if (k === '_documentId') {
+            else if (k === '_documentId') {
                 body.documentId = this[k];
+            }
+            else if (k === '_documentName') {
+                body.documentName = this[k];
+            }
+            else if (k === '_documentType') {
+                body.documentType = this[k];
             }
         }
         for (var key in sections) {

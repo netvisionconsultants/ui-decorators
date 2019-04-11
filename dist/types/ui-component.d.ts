@@ -8,6 +8,8 @@ export interface Component {
     components: Array<any>;
     source: any;
     documentId: any;
+    documentName: any;
+    documentType: any;
     sections: any;
 }
 export default class UIComponent {
