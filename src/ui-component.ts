@@ -12,7 +12,47 @@ export interface Component {
     sections: any
 }
 
+export interface GeoComponent {
+    source: any
+    documentId: any
+    dataType: any
+    geoType: any
+    locations: any
+    displayName: any
+    color: any
+}
+
 export default class UIComponent {
+    renderGeoComponent() {
+        const geoComponent: GeoComponent = {
+            source: '',
+            documentId: '',
+            dataType: '',
+            geoType: '',
+            locations: '',
+            displayName: '',
+            color: ''
+        }
+
+        for (let k in this) {
+            if (k.endsWith('GeoId')) {
+                geoComponent.documentId = this[k]
+            } else if (k.endsWith('GeoColor')) {
+                geoComponent.color = this[k]
+            } else if (k.endsWith('GeoDataType')) {
+                geoComponent.dataType = this[k]
+            } else if (k.endsWith('GeoDisplayName')) {
+                geoComponent.displayName = this[k]
+            } else if (k.endsWith('GeoLocations')) {
+                geoComponent.locations = (this[k] as any).value
+                geoComponent.geoType = (this[k] as any).type
+            } else if (k === '_source') {
+                geoComponent.source = this[k]
+            }
+        }
+        return geoComponent
+    }
+
     renderComponent() {
         let sections: any = {}
         const body: Component = {
