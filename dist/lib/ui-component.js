@@ -12,9 +12,48 @@ var documentId_1 = require("./decorators/documentId");
 exports.documentId = documentId_1.documentId;
 var section_1 = require("./decorators/section");
 exports.hasSection = section_1.hasSection;
+var geo_1 = require("./decorators/geo");
+exports.geoId = geo_1.geoId;
+exports.geoDataType = geo_1.geoDataType;
+exports.geoDisplayName = geo_1.geoDisplayName;
+exports.geoColor = geo_1.geoColor;
+exports.geoLocations = geo_1.geoLocations;
 var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
+    UIComponent.prototype.renderGeoComponent = function () {
+        var geoComponent = {
+            source: '',
+            documentId: '',
+            dataType: '',
+            geoType: '',
+            locations: '',
+            displayName: '',
+            color: ''
+        };
+        for (var k in this) {
+            if (k.endsWith('GeoId')) {
+                geoComponent.documentId = this[k];
+            }
+            else if (k.endsWith('GeoColor')) {
+                geoComponent.color = this[k];
+            }
+            else if (k.endsWith('GeoDataType')) {
+                geoComponent.dataType = this[k];
+            }
+            else if (k.endsWith('GeoDisplayName')) {
+                geoComponent.displayName = this[k];
+            }
+            else if (k.endsWith('GeoLocations')) {
+                geoComponent.locations = this[k].value;
+                geoComponent.geoType = this[k].type;
+            }
+            else if (k === '_source') {
+                geoComponent.source = this[k];
+            }
+        }
+        return geoComponent;
+    };
     UIComponent.prototype.renderComponent = function () {
         var sections = {};
         var body = {

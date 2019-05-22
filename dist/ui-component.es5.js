@@ -129,9 +129,96 @@ function hasSection(_a) {
     };
 }
 
+function geoId(args) {
+    return function (target, propName) {
+        Object.defineProperty(target, propName + "-GeoId", {
+            get: function () {
+                return args && args.transform ? args.transform(this[propName]) : this[propName];
+            },
+            enumerable: true
+        });
+    };
+}
+function geoDataType(args) {
+    return function (target, propName) {
+        Object.defineProperty(target, propName + "-GeoDataType", {
+            get: function () {
+                return args && args.transform ? args.transform(this[propName]) : this[propName];
+            },
+            enumerable: true
+        });
+    };
+}
+function geoDisplayName(args) {
+    return function (target, propName) {
+        Object.defineProperty(target, propName + "-GeoDisplayName", {
+            get: function () {
+                return args && args.transform ? args.transform(this[propName]) : this[propName];
+            },
+            enumerable: true
+        });
+    };
+}
+function geoColor(args) {
+    return function (target, propName) {
+        Object.defineProperty(target, propName + "-GeoColor", {
+            get: function () {
+                return args && args.transform ? args.transform(this[propName]) : this[propName];
+            },
+            enumerable: true
+        });
+    };
+}
+function geoLocations(args) {
+    return function (target, propName) {
+        Object.defineProperty(target, propName + "-GeoLocations", {
+            get: function () {
+                return {
+                    value: args.transform ? args.transform(this[propName]) : this[propName],
+                    type: args.type
+                };
+            },
+            enumerable: true
+        });
+    };
+}
+
 var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
+    UIComponent.prototype.renderGeoComponent = function () {
+        var geoComponent = {
+            source: '',
+            documentId: '',
+            dataType: '',
+            geoType: '',
+            locations: '',
+            displayName: '',
+            color: ''
+        };
+        for (var k in this) {
+            if (k.endsWith('GeoId')) {
+                geoComponent.documentId = this[k];
+            }
+            else if (k.endsWith('GeoColor')) {
+                geoComponent.color = this[k];
+            }
+            else if (k.endsWith('GeoDataType')) {
+                geoComponent.dataType = this[k];
+            }
+            else if (k.endsWith('GeoDisplayName')) {
+                geoComponent.displayName = this[k];
+            }
+            else if (k.endsWith('GeoLocations')) {
+                geoComponent.locations = this[k].value;
+                geoComponent.geoType = this[k].type;
+            }
+            else if (k === '_source') {
+                geoComponent.source = this[k];
+            }
+        }
+        return geoComponent;
+    };
     UIComponent.prototype.renderComponent = function () {
         var sections = {};
         var body = {
@@ -174,5 +261,5 @@ var UIComponent = /** @class */ (function () {
 }());
 
 export default UIComponent;
-export { source, table, field, link, documentId, hasSection };
+export { source, table, field, link, documentId, hasSection, geoId, geoDataType, geoDisplayName, geoColor, geoLocations };
 //# sourceMappingURL=ui-component.es5.js.map
