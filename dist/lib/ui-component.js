@@ -10,6 +10,10 @@ var link_1 = require("./decorators/link");
 exports.link = link_1.link;
 var documentId_1 = require("./decorators/documentId");
 exports.documentId = documentId_1.documentId;
+var documentName_1 = require("./decorators/documentName");
+exports.documentName = documentName_1.documentName;
+var documentType_1 = require("./decorators/documentType");
+exports.documentType = documentType_1.documentType;
 var section_1 = require("./decorators/section");
 exports.hasSection = section_1.hasSection;
 var geo_1 = require("./decorators/geo");
@@ -60,6 +64,8 @@ var UIComponent = /** @class */ (function () {
             components: [],
             sections: [],
             documentId: '',
+            documentName: '',
+            documentType: '',
             source: ''
         };
         for (var k in this) {
@@ -75,11 +81,17 @@ var UIComponent = /** @class */ (function () {
                     body.components.push(component);
                 }
             }
-            if (k === '_source') {
+            else if (k === '_source') {
                 body.source = this[k];
             }
-            if (k === '_documentId') {
+            else if (k === '_documentId') {
                 body.documentId = this[k];
+            }
+            else if (k === '_documentName') {
+                body.documentName = this[k];
+            }
+            else if (k === '_documentType') {
+                body.documentType = this[k];
             }
         }
         for (var key in sections) {

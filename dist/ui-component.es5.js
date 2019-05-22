@@ -119,6 +119,23 @@ function documentId() {
     };
 }
 
+function documentName() {
+    return function (target, propName) {
+        Object.defineProperty(target, "_documentName", {
+            get: function () {
+                return this[propName];
+            },
+            enumerable: true
+        });
+    };
+}
+
+function documentType(type) {
+    return function (constructor) {
+        constructor.prototype._documentType = type;
+    };
+}
+
 function hasSection(_a) {
     var name = _a.name, title = _a.title, order = _a.order;
     return function (constructor) {
@@ -225,6 +242,8 @@ var UIComponent = /** @class */ (function () {
             components: [],
             sections: [],
             documentId: '',
+            documentName: '',
+            documentType: '',
             source: ''
         };
         for (var k in this) {
@@ -240,11 +259,17 @@ var UIComponent = /** @class */ (function () {
                     body.components.push(component);
                 }
             }
-            if (k === '_source') {
+            else if (k === '_source') {
                 body.source = this[k];
             }
-            if (k === '_documentId') {
+            else if (k === '_documentId') {
                 body.documentId = this[k];
+            }
+            else if (k === '_documentName') {
+                body.documentName = this[k];
+            }
+            else if (k === '_documentType') {
+                body.documentType = this[k];
             }
         }
         for (var key in sections) {
@@ -261,5 +286,5 @@ var UIComponent = /** @class */ (function () {
 }());
 
 export default UIComponent;
-export { source, table, field, link, documentId, hasSection, geoId, geoDataType, geoDisplayName, geoColor, geoLocations };
+export { source, table, field, link, documentId, documentName, documentType, hasSection, geoId, geoDataType, geoDisplayName, geoColor, geoLocations };
 //# sourceMappingURL=ui-component.es5.js.map

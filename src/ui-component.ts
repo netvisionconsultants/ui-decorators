@@ -3,6 +3,8 @@ export { table, TableArgs } from './decorators/table'
 export { field, FieldArgs } from './decorators/field'
 export { link, LinkArgs } from './decorators/link'
 export { documentId } from './decorators/documentId'
+export { documentName } from './decorators/documentName'
+export { documentType } from './decorators/documentType'
 export { hasSection, Section } from './decorators/section'
 export { geoId, geoDataType, geoDisplayName, geoColor, geoLocations } from './decorators/geo'
 
@@ -10,6 +12,8 @@ export interface Component {
     components: Array<any>
     source: any
     documentId: any
+    documentName: any
+    documentType: any
     sections: any
 }
 
@@ -60,6 +64,8 @@ export default class UIComponent {
             components: [],
             sections: [],
             documentId: '',
+            documentName: '',
+            documentType: '',
             source: ''
         }
 
@@ -74,12 +80,14 @@ export default class UIComponent {
                 } else {
                     body.components.push(component)
                 }
-            }
-            if (k === '_source') {
+            } else if (k === '_source') {
                 body.source = this[k]
-            }
-            if (k === '_documentId') {
+            } else if (k === '_documentId') {
                 body.documentId = this[k]
+            } else if (k === '_documentName') {
+                body.documentName = this[k]
+            } else if (k === '_documentType') {
+                body.documentType = this[k]
             }
         }
         for (const key in sections) {
