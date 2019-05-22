@@ -58,4 +58,4 @@ function geoLocations(args) {
     };
 }
 exports.geoLocations = geoLocations;
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=geo.js.map
