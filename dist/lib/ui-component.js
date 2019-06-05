@@ -33,7 +33,8 @@ var UIComponent = /** @class */ (function () {
             geoType: '',
             locations: '',
             displayName: '',
-            color: ''
+            color: '',
+            geoDataSuperType: ''
         };
         for (var k in this) {
             if (k.endsWith('GeoId')) {
@@ -54,6 +55,9 @@ var UIComponent = /** @class */ (function () {
             }
             else if (k === '_source') {
                 geoComponent.source = this[k];
+            }
+            else if (k === '_geoDataSuperType') {
+                geoComponent.geoDataSuperType = this[k];
             }
         }
         return geoComponent;

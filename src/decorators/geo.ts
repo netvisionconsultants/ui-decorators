@@ -1,6 +1,7 @@
 export interface GeoArgs {
     transform?: (val: any) => string
     type?: string
+    color?: string
 }
 
 export interface GeoLocationsArgs {
@@ -30,6 +31,12 @@ export function geoDataType(args?: GeoArgs) {
     }
 }
 
+export function geoDataSuperType(name: string) {
+    return function(constructor: any) {
+        constructor.prototype._geoDataSuperType = name
+    }
+}
+
 export function geoDisplayName(args?: GeoArgs) {
     return function(target: Object, propName: string) {
         Object.defineProperty(target, `${propName}-GeoDisplayName`, {
@@ -45,7 +52,7 @@ export function geoColor(args?: GeoArgs) {
     return function(target: Object, propName: string) {
         Object.defineProperty(target, `${propName}-GeoColor`, {
             get() {
-                return args && args.transform ? args.transform(this[propName]) : this[propName]
+                return args && args.color ? args.color : this[propName]
             },
             enumerable: true
         })

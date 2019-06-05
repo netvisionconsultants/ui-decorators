@@ -1,3 +1,5 @@
+import { geoDataSuperType } from './decorators/geo'
+
 export { source } from './decorators/source'
 export { table, TableArgs } from './decorators/table'
 export { field, FieldArgs } from './decorators/field'
@@ -25,6 +27,7 @@ export interface GeoComponent {
     locations: any
     displayName: any
     color: any
+    geoDataSuperType: any
 }
 
 export default class UIComponent {
@@ -36,7 +39,8 @@ export default class UIComponent {
             geoType: '',
             locations: '',
             displayName: '',
-            color: ''
+            color: '',
+            geoDataSuperType: ''
         }
 
         for (let k in this) {
@@ -53,6 +57,8 @@ export default class UIComponent {
                 geoComponent.geoType = (this[k] as any).type
             } else if (k === '_source') {
                 geoComponent.source = this[k]
+            } else if (k === '_geoDataSuperType') {
+                geoComponent.geoDataSuperType = this[k]
             }
         }
         return geoComponent

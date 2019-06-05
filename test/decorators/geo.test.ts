@@ -5,14 +5,16 @@ import {
     geoDataType,
     geoDisplayName,
     geoColor,
-    geoLocations
+    geoLocations,
+    geoDataSuperType
 } from '../../src/decorators/geo'
 
 describe('geo', () => {
     it('UIComponent.renderGeoComponent() should render', () => {
         @source('source')
+        @geoDataSuperType('super')
         class TestComponent extends UIComponent {
-            @geoColor()
+            @geoColor({ color: 'red' })
             color: string
 
             @geoId()
@@ -45,13 +47,14 @@ describe('geo', () => {
         )
         const comp: any = testComponent.renderGeoComponent()
         expect(comp).toEqual({
-            color: 'blue',
+            color: 'red',
             dataType: 'wifi',
             displayName: 'McDonalds Wifi',
             documentId: 'id',
             geoType: 'point',
             locations: '10.0, -10.0',
-            source: 'source'
+            source: 'source',
+            geoDataSuperType: 'super'
         })
     })
 })

@@ -23,6 +23,7 @@ export interface GeoComponent {
     locations: any;
     displayName: any;
     color: any;
+    geoDataSuperType: any;
 }
 export default class UIComponent {
     renderGeoComponent(): GeoComponent;

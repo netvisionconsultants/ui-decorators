@@ -22,6 +22,12 @@ function geoDataType(args) {
     };
 }
 exports.geoDataType = geoDataType;
+function geoDataSuperType(name) {
+    return function (constructor) {
+        constructor.prototype._geoDataSuperType = name;
+    };
+}
+exports.geoDataSuperType = geoDataSuperType;
 function geoDisplayName(args) {
     return function (target, propName) {
         Object.defineProperty(target, propName + "-GeoDisplayName", {
@@ -37,7 +43,7 @@ function geoColor(args) {
     return function (target, propName) {
         Object.defineProperty(target, propName + "-GeoColor", {
             get: function () {
-                return args && args.transform ? args.transform(this[propName]) : this[propName];
+                return args && args.color ? args.color : this[propName];
             },
             enumerable: true
         });

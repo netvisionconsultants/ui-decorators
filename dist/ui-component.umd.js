@@ -186,7 +186,7 @@
         return function (target, propName) {
             Object.defineProperty(target, propName + "-GeoColor", {
                 get: function () {
-                    return args && args.transform ? args.transform(this[propName]) : this[propName];
+                    return args && args.color ? args.color : this[propName];
                 },
                 enumerable: true
             });
@@ -217,7 +217,8 @@
                 geoType: '',
                 locations: '',
                 displayName: '',
-                color: ''
+                color: '',
+                geoDataSuperType: ''
             };
             for (var k in this) {
                 if (k.endsWith('GeoId')) {
@@ -238,6 +239,9 @@
                 }
                 else if (k === '_source') {
                     geoComponent.source = this[k];
+                }
+                else if (k === '_geoDataSuperType') {
+                    geoComponent.geoDataSuperType = this[k];
                 }
             }
             return geoComponent;
