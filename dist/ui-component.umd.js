@@ -172,6 +172,11 @@
             });
         };
     }
+    function geoDataSuperType(name) {
+        return function (constructor) {
+            constructor.prototype._geoDataSuperType = name;
+        };
+    }
     function geoDisplayName(args) {
         return function (target, propName) {
             Object.defineProperty(target, propName + "-GeoDisplayName", {
@@ -309,6 +314,7 @@
     exports.geoDisplayName = geoDisplayName;
     exports.geoColor = geoColor;
     exports.geoLocations = geoLocations;
+    exports.geoDataSuperType = geoDataSuperType;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -166,6 +166,11 @@ function geoDataType(args) {
         });
     };
 }
+function geoDataSuperType(name) {
+    return function (constructor) {
+        constructor.prototype._geoDataSuperType = name;
+    };
+}
 function geoDisplayName(args) {
     return function (target, propName) {
         Object.defineProperty(target, propName + "-GeoDisplayName", {
@@ -290,5 +295,5 @@ var UIComponent = /** @class */ (function () {
 }());
 
 export default UIComponent;
-export { source, table, field, link, documentId, documentName, documentType, hasSection, geoId, geoDataType, geoDisplayName, geoColor, geoLocations };
+export { source, table, field, link, documentId, documentName, documentType, hasSection, geoId, geoDataType, geoDisplayName, geoColor, geoLocations, geoDataSuperType };
 //# sourceMappingURL=ui-component.es5.js.map
