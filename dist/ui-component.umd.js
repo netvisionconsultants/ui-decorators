@@ -234,6 +234,7 @@
                 dataType: '',
                 geoType: '',
                 locations: '',
+                image: '',
                 displayName: '',
                 color: '',
                 geoDataSuperType: ''
@@ -250,6 +251,9 @@
                 }
                 else if (k.endsWith('GeoDisplayName')) {
                     geoComponent.displayName = this[k];
+                }
+                else if (k.endsWith('GeoImage')) {
+                    geoComponent.image = this[k];
                 }
                 else if (k.endsWith('GeoLocations')) {
                     geoComponent.locations = this[k].value;

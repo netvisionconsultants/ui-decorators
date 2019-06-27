@@ -228,6 +228,7 @@ var UIComponent = /** @class */ (function () {
             dataType: '',
             geoType: '',
             locations: '',
+            image: '',
             displayName: '',
             color: '',
             geoDataSuperType: ''
@@ -244,6 +245,9 @@ var UIComponent = /** @class */ (function () {
             }
             else if (k.endsWith('GeoDisplayName')) {
                 geoComponent.displayName = this[k];
+            }
+            else if (k.endsWith('GeoImage')) {
+                geoComponent.image = this[k];
             }
             else if (k.endsWith('GeoLocations')) {
                 geoComponent.locations = this[k].value;

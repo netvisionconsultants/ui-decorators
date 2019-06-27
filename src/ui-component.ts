@@ -36,6 +36,7 @@ export interface GeoComponent {
     displayName: any
     color: any
     geoDataSuperType: any
+    image: any
 }
 
 export default class UIComponent {
@@ -46,6 +47,7 @@ export default class UIComponent {
             dataType: '',
             geoType: '',
             locations: '',
+            image: '',
             displayName: '',
             color: '',
             geoDataSuperType: ''
@@ -60,6 +62,8 @@ export default class UIComponent {
                 geoComponent.dataType = this[k]
             } else if (k.endsWith('GeoDisplayName')) {
                 geoComponent.displayName = this[k]
+            } else if (k.endsWith('GeoImage')) {
+                geoComponent.image = this[k]
             } else if (k.endsWith('GeoLocations')) {
                 geoComponent.locations = (this[k] as any).value
                 geoComponent.geoType = (this[k] as any).type

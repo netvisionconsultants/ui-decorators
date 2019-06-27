@@ -24,6 +24,7 @@ export interface GeoComponent {
     displayName: any;
     color: any;
     geoDataSuperType: any;
+    image: any;
 }
 export default class UIComponent {
     renderGeoComponent(): GeoComponent;
