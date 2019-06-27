@@ -2,6 +2,7 @@ export interface GeoArgs {
     transform?: (val: any) => string
     type?: string
     color?: string
+    url?: string
 }
 
 export interface GeoLocationsArgs {
@@ -62,6 +63,20 @@ export function geoColor(args?: GeoArgs) {
 export function geoLocations(args: GeoArgs) {
     return function(target: Object, propName: string) {
         Object.defineProperty(target, `${propName}-GeoLocations`, {
+            get() {
+                return {
+                    value: args.transform ? args.transform(this[propName]) : this[propName],
+                    type: args.type
+                }
+            },
+            enumerable: true
+        })
+    }
+}
+
+export function geoImage(args: GeoArgs) {
+    return function(target: Object, propName: string) {
+        Object.defineProperty(target, `${propName}-GeoImage`, {
             get() {
                 return {
                     value: args.transform ? args.transform(this[propName]) : this[propName],

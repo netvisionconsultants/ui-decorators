@@ -210,6 +210,19 @@
             });
         };
     }
+    function geoImage(args) {
+        return function (target, propName) {
+            Object.defineProperty(target, propName + "-GeoImage", {
+                get: function () {
+                    return {
+                        value: args.transform ? args.transform(this[propName]) : this[propName],
+                        type: args.type
+                    };
+                },
+                enumerable: true
+            });
+        };
+    }
 
     var UIComponent = /** @class */ (function () {
         function UIComponent() {
@@ -315,6 +328,7 @@
     exports.geoColor = geoColor;
     exports.geoLocations = geoLocations;
     exports.geoDataSuperType = geoDataSuperType;
+    exports.geoImage = geoImage;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -2,6 +2,7 @@ export interface GeoArgs {
     transform?: (val: any) => string;
     type?: string;
     color?: string;
+    url?: string;
 }
 export interface GeoLocationsArgs {
     type: string;
@@ -13,3 +14,4 @@ export declare function geoDataSuperType(name: string): (constructor: any) => vo
 export declare function geoDisplayName(args?: GeoArgs): (target: Object, propName: string) => void;
 export declare function geoColor(args?: GeoArgs): (target: Object, propName: string) => void;
 export declare function geoLocations(args: GeoArgs): (target: Object, propName: string) => void;
+export declare function geoImage(args: GeoArgs): (target: Object, propName: string) => void;

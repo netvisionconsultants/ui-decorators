@@ -14,7 +14,8 @@ export {
     geoDisplayName,
     geoColor,
     geoLocations,
-    geoDataSuperType
+    geoDataSuperType,
+    geoImage
 } from './decorators/geo'
 
 export interface Component {

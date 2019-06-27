@@ -64,4 +64,18 @@ function geoLocations(args) {
     };
 }
 exports.geoLocations = geoLocations;
+function geoImage(args) {
+    return function (target, propName) {
+        Object.defineProperty(target, propName + "-GeoImage", {
+            get: function () {
+                return {
+                    value: args.transform ? args.transform(this[propName]) : this[propName],
+                    type: args.type
+                };
+            },
+            enumerable: true
+        });
+    };
+}
+exports.geoImage = geoImage;
 //# sourceMappingURL=geo.js.map

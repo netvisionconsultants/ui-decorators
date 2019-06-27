@@ -6,7 +6,7 @@ export { documentId } from './decorators/documentId';
 export { documentName } from './decorators/documentName';
 export { documentType } from './decorators/documentType';
 export { hasSection, Section } from './decorators/section';
-export { geoId, geoDataType, geoDisplayName, geoColor, geoLocations, geoDataSuperType } from './decorators/geo';
+export { geoId, geoDataType, geoDisplayName, geoColor, geoLocations, geoDataSuperType, geoImage } from './decorators/geo';
 export interface Component {
     components: Array<any>;
     source: any;

@@ -23,6 +23,7 @@ exports.geoDisplayName = geo_1.geoDisplayName;
 exports.geoColor = geo_1.geoColor;
 exports.geoLocations = geo_1.geoLocations;
 exports.geoDataSuperType = geo_1.geoDataSuperType;
+exports.geoImage = geo_1.geoImage;
 var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
