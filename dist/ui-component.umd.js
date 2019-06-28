@@ -214,10 +214,7 @@
         return function (target, propName) {
             Object.defineProperty(target, propName + "-GeoImage", {
                 get: function () {
-                    return {
-                        value: args.transform ? args.transform(this[propName]) : this[propName],
-                        type: args.type
-                    };
+                    return this[propName];
                 },
                 enumerable: true
             });

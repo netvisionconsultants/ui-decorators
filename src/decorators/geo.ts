@@ -74,14 +74,11 @@ export function geoLocations(args: GeoArgs) {
     }
 }
 
-export function geoImage(args: GeoArgs) {
+export function geoImage(args?: GeoArgs) {
     return function(target: Object, propName: string) {
         Object.defineProperty(target, `${propName}-GeoImage`, {
             get() {
-                return {
-                    value: args.transform ? args.transform(this[propName]) : this[propName],
-                    type: args.type
-                }
+                return this[propName]
             },
             enumerable: true
         })
