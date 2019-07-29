@@ -24,6 +24,7 @@ exports.geoColor = geo_1.geoColor;
 exports.geoLocations = geo_1.geoLocations;
 exports.geoDataSuperType = geo_1.geoDataSuperType;
 exports.geoImage = geo_1.geoImage;
+exports.geoImageDirection = geo_1.geoImageDirection;
 var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
@@ -35,9 +36,10 @@ var UIComponent = /** @class */ (function () {
             geoType: '',
             locations: '',
             image: '',
+            imageDirection: '',
             displayName: '',
             color: '',
-            geoDataSuperType: ''
+            geoDataSuperType: '',
         };
         for (var k in this) {
             if (k.endsWith('GeoId')) {
@@ -54,6 +56,9 @@ var UIComponent = /** @class */ (function () {
             }
             else if (k.endsWith('GeoImage')) {
                 geoComponent.image = this[k];
+            }
+            else if (k.endsWith('GeoImageDirection')) {
+                geoComponent.imageDirection = this[k];
             }
             else if (k.endsWith('GeoLocations')) {
                 geoComponent.locations = this[k].value;

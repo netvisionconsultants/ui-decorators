@@ -15,7 +15,8 @@ export {
     geoColor,
     geoLocations,
     geoDataSuperType,
-    geoImage
+    geoImage,
+    geoImageDirection
 } from './decorators/geo'
 
 export interface Component {
@@ -37,6 +38,7 @@ export interface GeoComponent {
     color: any
     geoDataSuperType: any
     image: any
+    imageDirection: any
 }
 
 export default class UIComponent {
@@ -48,6 +50,7 @@ export default class UIComponent {
             geoType: '',
             locations: '',
             image: '',
+            imageDirection: '',
             displayName: '',
             color: '',
             geoDataSuperType: ''
@@ -64,6 +67,8 @@ export default class UIComponent {
                 geoComponent.displayName = this[k]
             } else if (k.endsWith('GeoImage')) {
                 geoComponent.image = this[k]
+            } else if (k.endsWith('GeoImageDirection')) {
+                geoComponent.imageDirection = this[k]
             } else if (k.endsWith('GeoLocations')) {
                 geoComponent.locations = (this[k] as any).value
                 geoComponent.geoType = (this[k] as any).type

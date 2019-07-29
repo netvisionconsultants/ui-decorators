@@ -6,7 +6,9 @@ import {
     geoDisplayName,
     geoColor,
     geoLocations,
-    geoDataSuperType
+    geoDataSuperType,
+    geoImage,
+    geoImageDirection
 } from '../../src/decorators/geo'
 
 describe('geo', () => {
@@ -29,13 +31,29 @@ describe('geo', () => {
             @geoLocations({ type: 'point' })
             locations: string
 
-            constructor(id: string, color: string, type: string, name: string, locations: string) {
+            @geoImage()
+            image: string
+
+            @geoImageDirection({ transform: val => val.replace(' degrees', '') })
+            imageDirection: string
+
+            constructor(
+                id: string,
+                color: string,
+                type: string,
+                name: string,
+                locations: string,
+                image: string,
+                imageDirection: string
+            ) {
                 super()
                 this.color = color
                 this.id = id
                 this.type = type
                 this.name = name
                 this.locations = locations
+                this.image = image
+                this.imageDirection = imageDirection
             }
         }
         const testComponent = new TestComponent(
@@ -43,7 +61,9 @@ describe('geo', () => {
             'blue',
             'wifi',
             'McDonalds Wifi',
-            '10.0, -10.0'
+            '10.0, -10.0',
+            'http://www.image.com',
+            '123.45 degrees'
         )
         const comp: any = testComponent.renderGeoComponent()
         expect(comp).toEqual({
@@ -54,7 +74,9 @@ describe('geo', () => {
             geoType: 'point',
             locations: '10.0, -10.0',
             source: 'source',
-            geoDataSuperType: 'super'
+            geoDataSuperType: 'super',
+            image: 'http://www.image.com',
+            imageDirection: '123.45'
         })
     })
 })

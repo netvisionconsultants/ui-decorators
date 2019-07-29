@@ -214,7 +214,17 @@
         return function (target, propName) {
             Object.defineProperty(target, propName + "-GeoImage", {
                 get: function () {
-                    return this[propName];
+                    return args && args.transform ? args.transform(this[propName]) : this[propName];
+                },
+                enumerable: true
+            });
+        };
+    }
+    function geoImageDirection(args) {
+        return function (target, propName) {
+            Object.defineProperty(target, propName + "-GeoImageDirection", {
+                get: function () {
+                    return args && args.transform ? args.transform(this[propName]) : this[propName];
                 },
                 enumerable: true
             });
@@ -232,9 +242,10 @@
                 geoType: '',
                 locations: '',
                 image: '',
+                imageDirection: '',
                 displayName: '',
                 color: '',
-                geoDataSuperType: ''
+                geoDataSuperType: '',
             };
             for (var k in this) {
                 if (k.endsWith('GeoId')) {
@@ -251,6 +262,9 @@
                 }
                 else if (k.endsWith('GeoImage')) {
                     geoComponent.image = this[k];
+                }
+                else if (k.endsWith('GeoImageDirection')) {
+                    geoComponent.imageDirection = this[k];
                 }
                 else if (k.endsWith('GeoLocations')) {
                     geoComponent.locations = this[k].value;
@@ -330,6 +344,7 @@
     exports.geoLocations = geoLocations;
     exports.geoDataSuperType = geoDataSuperType;
     exports.geoImage = geoImage;
+    exports.geoImageDirection = geoImageDirection;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

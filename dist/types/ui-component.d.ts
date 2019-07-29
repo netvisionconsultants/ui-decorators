@@ -6,7 +6,7 @@ export { documentId } from './decorators/documentId';
 export { documentName } from './decorators/documentName';
 export { documentType } from './decorators/documentType';
 export { hasSection, Section } from './decorators/section';
-export { geoId, geoDataType, geoDisplayName, geoColor, geoLocations, geoDataSuperType, geoImage } from './decorators/geo';
+export { geoId, geoDataType, geoDisplayName, geoColor, geoLocations, geoDataSuperType, geoImage, geoImageDirection, } from './decorators/geo';
 export interface Component {
     components: Array<any>;
     source: any;
@@ -25,6 +25,7 @@ export interface GeoComponent {
     color: any;
     geoDataSuperType: any;
     image: any;
+    imageDirection: any;
 }
 export default class UIComponent {
     renderGeoComponent(): GeoComponent;

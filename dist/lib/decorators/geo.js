@@ -68,11 +68,22 @@ function geoImage(args) {
     return function (target, propName) {
         Object.defineProperty(target, propName + "-GeoImage", {
             get: function () {
-                return this[propName];
+                return args && args.transform ? args.transform(this[propName]) : this[propName];
             },
             enumerable: true
         });
     };
 }
 exports.geoImage = geoImage;
+function geoImageDirection(args) {
+    return function (target, propName) {
+        Object.defineProperty(target, propName + "-GeoImageDirection", {
+            get: function () {
+                return args && args.transform ? args.transform(this[propName]) : this[propName];
+            },
+            enumerable: true
+        });
+    };
+}
+exports.geoImageDirection = geoImageDirection;
 //# sourceMappingURL=geo.js.map

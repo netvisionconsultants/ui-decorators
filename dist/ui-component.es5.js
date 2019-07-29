@@ -208,7 +208,17 @@ function geoImage(args) {
     return function (target, propName) {
         Object.defineProperty(target, propName + "-GeoImage", {
             get: function () {
-                return this[propName];
+                return args && args.transform ? args.transform(this[propName]) : this[propName];
+            },
+            enumerable: true
+        });
+    };
+}
+function geoImageDirection(args) {
+    return function (target, propName) {
+        Object.defineProperty(target, propName + "-GeoImageDirection", {
+            get: function () {
+                return args && args.transform ? args.transform(this[propName]) : this[propName];
             },
             enumerable: true
         });
@@ -226,9 +236,10 @@ var UIComponent = /** @class */ (function () {
             geoType: '',
             locations: '',
             image: '',
+            imageDirection: '',
             displayName: '',
             color: '',
-            geoDataSuperType: ''
+            geoDataSuperType: '',
         };
         for (var k in this) {
             if (k.endsWith('GeoId')) {
@@ -245,6 +256,9 @@ var UIComponent = /** @class */ (function () {
             }
             else if (k.endsWith('GeoImage')) {
                 geoComponent.image = this[k];
+            }
+            else if (k.endsWith('GeoImageDirection')) {
+                geoComponent.imageDirection = this[k];
             }
             else if (k.endsWith('GeoLocations')) {
                 geoComponent.locations = this[k].value;
@@ -309,5 +323,5 @@ var UIComponent = /** @class */ (function () {
 }());
 
 export default UIComponent;
-export { source, table, field, link, documentId, documentName, documentType, hasSection, geoId, geoDataType, geoDisplayName, geoColor, geoLocations, geoDataSuperType, geoImage };
+export { source, table, field, link, documentId, documentName, documentType, hasSection, geoId, geoDataType, geoDisplayName, geoColor, geoLocations, geoDataSuperType, geoImage, geoImageDirection };
 //# sourceMappingURL=ui-component.es5.js.map

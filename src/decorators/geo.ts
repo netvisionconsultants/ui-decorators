@@ -78,7 +78,18 @@ export function geoImage(args?: GeoArgs) {
     return function(target: Object, propName: string) {
         Object.defineProperty(target, `${propName}-GeoImage`, {
             get() {
-                return this[propName]
+                return args && args.transform ? args.transform(this[propName]) : this[propName]
+            },
+            enumerable: true
+        })
+    }
+}
+
+export function geoImageDirection(args?: GeoArgs) {
+    return function(target: Object, propName: string) {
+        Object.defineProperty(target, `${propName}-GeoImageDirection`, {
+            get() {
+                return args && args.transform ? args.transform(this[propName]) : this[propName]
             },
             enumerable: true
         })

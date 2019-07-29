@@ -15,3 +15,4 @@ export declare function geoDisplayName(args?: GeoArgs): (target: Object, propNam
 export declare function geoColor(args?: GeoArgs): (target: Object, propName: string) => void;
 export declare function geoLocations(args: GeoArgs): (target: Object, propName: string) => void;
 export declare function geoImage(args?: GeoArgs): (target: Object, propName: string) => void;
+export declare function geoImageDirection(args?: GeoArgs): (target: Object, propName: string) => void;
