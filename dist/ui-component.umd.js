@@ -76,11 +76,11 @@
         return transform ? transform(sortedRows) : sortedRows;
     }
     function table(_a) {
-        var title = _a.title, columns = _a.columns, sortOrder = _a.sortOrder, sortingColumn = _a.sortingColumn, transform = _a.transform, section = _a.section;
+        var label = _a.label, columns = _a.columns, sortOrder = _a.sortOrder, sortingColumn = _a.sortingColumn, transform = _a.transform, section = _a.section;
         return function (target, propName) {
             Object.defineProperty(target, propName + "-UITable", {
                 get: function () {
-                    return __assign({ title: title,
+                    return __assign({ label: label,
                         columns: columns, type: 'table', value: createTable(this[propName], columns, sortOrder, sortingColumn, transform) }, (section && { section: section }));
                 },
                 enumerable: true
@@ -245,7 +245,7 @@
                 imageDirection: '',
                 displayName: '',
                 color: '',
-                geoDataSuperType: '',
+                geoDataSuperType: ''
             };
             for (var k in this) {
                 if (k.endsWith('GeoId')) {

@@ -39,7 +39,7 @@ var UIComponent = /** @class */ (function () {
             imageDirection: '',
             displayName: '',
             color: '',
-            geoDataSuperType: '',
+            geoDataSuperType: ''
         };
         for (var k in this) {
             if (k.endsWith('GeoId')) {

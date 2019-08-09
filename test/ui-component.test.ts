@@ -47,7 +47,7 @@ describe('UIComponent', () => {
         @source('Telegeography')
         class TestComponent extends UIComponent {
             @table({
-                title: 'Table Title',
+                label: 'Table Label',
                 columns: ['col3', 'col2', 'col1'],
                 sortingColumn: 'col2',
                 sortOrder: SortOrder.DESC
@@ -69,7 +69,7 @@ describe('UIComponent', () => {
         const testComponent = new TestComponent(rows)
         const json: Object = testComponent.renderComponent()
         expect(json).toHaveProperty('components')
-        expect((json as any).components[0]).toHaveProperty('title')
+        expect((json as any).components[0]).toHaveProperty('label')
         expect((json as any).components[0]).toHaveProperty('columns')
         expect((json as any).components[0]).toHaveProperty('type')
         expect((json as any).components[0]).toHaveProperty('value')
