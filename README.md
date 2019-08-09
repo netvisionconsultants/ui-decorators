@@ -33,7 +33,7 @@ export default class TodoItem extends UIComponent {
     itemDescription: string;
 
     @table({
-        title: 'Sub Tasks',
+        label: 'Sub Tasks',
         columns: ['id', 'name', 'description'],
         sortingColumn: 'id',
         sortOrder: SortOrder.DESC
@@ -75,7 +75,7 @@ Which will return a JSON object that looks like:
             "value": "Finish all of my chores"
         },
         {
-            "title": "Sub Tasks",
+            "label": "Sub Tasks",
             "columns": ["id", "name", "description"],
             "type": "table",
             "value": [
