@@ -18,7 +18,7 @@ function field(_a) {
             get: function () {
                 return __assign({ label: label,
                     longValue: longValue,
-                    displayEmpty: displayEmpty, type: 'field', value: transform ? transform(this[propName]) : this[propName] }, (section && { section: section }));
+                    displayEmpty: displayEmpty, type: 'field', fieldName: propName, value: transform ? transform(this[propName]) : this[propName] }, (section && { section: section }));
             },
             enumerable: true
         });

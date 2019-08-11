@@ -21,6 +21,7 @@ export function field({
                     longValue,
                     displayEmpty,
                     type: 'field',
+                    fieldName: propName,
                     value: transform ? transform(this[propName]) : this[propName],
                     ...(section && { section })
                 }

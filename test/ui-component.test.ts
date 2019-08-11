@@ -215,7 +215,8 @@ describe('UIComponent', () => {
             label: 'foo3 no section',
             longValue: false,
             type: 'field',
-            value: 'foo3'
+            value: 'foo3',
+            fieldName: 'foo3'
         })
     })
     it('UIComponent.renderComponent() adds multiple sections', () => {
@@ -255,7 +256,8 @@ describe('UIComponent', () => {
             label: 'foo3 no section',
             longValue: false,
             type: 'field',
-            value: 'foo3'
+            value: 'foo3',
+            fieldName: 'foo3'
         })
 
         const testComponent2 = new TestComponent('foo', 'google', 'foo3', 'abcd1234')
@@ -270,7 +272,8 @@ describe('UIComponent', () => {
             label: 'foo3 no section',
             longValue: false,
             type: 'field',
-            value: 'foo3'
+            value: 'foo3',
+            fieldName: 'foo3'
         })
     })
 })
