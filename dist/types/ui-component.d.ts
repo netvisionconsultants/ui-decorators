@@ -6,6 +6,7 @@ export { documentId } from './decorators/documentId';
 export { documentName } from './decorators/documentName';
 export { documentType } from './decorators/documentType';
 export { hasSection, Section } from './decorators/section';
+export { tableField } from './decorators/tableField';
 export { geoId, geoDataType, geoDisplayName, geoColor, geoLocations, geoDataSuperType, geoImage, geoImageDirection } from './decorators/geo';
 export interface Component {
     components: Array<any>;
@@ -28,6 +29,8 @@ export interface GeoComponent {
     imageDirection: any;
 }
 export default class UIComponent {
+    static getColumns(): any;
+    renderComponentAsTabular(): {};
     renderGeoComponent(): GeoComponent;
     renderComponent(): Component;
 }

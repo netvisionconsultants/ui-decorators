@@ -70,11 +70,11 @@ function createTable(rows, columns, sortOrder, sortingColumn, transform) {
     return transform ? transform(sortedRows) : sortedRows;
 }
 function table(_a) {
-    var label = _a.label, columns = _a.columns, sortOrder = _a.sortOrder, sortingColumn = _a.sortingColumn, transform = _a.transform, section = _a.section;
+    var title = _a.title, columns = _a.columns, sortOrder = _a.sortOrder, sortingColumn = _a.sortingColumn, transform = _a.transform, section = _a.section;
     return function (target, propName) {
         Object.defineProperty(target, propName + "-UITable", {
             get: function () {
-                return __assign({ label: label,
+                return __assign({ title: title,
                     columns: columns, type: 'table', value: createTable(this[propName], columns, sortOrder, sortingColumn, transform) }, (section && { section: section }));
             },
             enumerable: true
@@ -143,6 +143,26 @@ function hasSection(_a) {
             constructor.prototype._hasSections = {};
         }
         constructor.prototype._hasSections[name] = { name: name, title: title, order: order, components: [] };
+    };
+}
+
+function tableField(_a) {
+    var label = _a.label, transform = _a.transform;
+    return function (target, propName) {
+        target.tableColumns.push({
+            accessor: propName,
+            label: label,
+        });
+        Object.defineProperty(target, propName + "-UITableField", {
+            get: function () {
+                return {
+                    label: label,
+                    fieldName: propName,
+                    value: transform ? transform(this[propName]) : this[propName],
+                };
+            },
+            enumerable: true
+        });
     };
 }
 
@@ -228,6 +248,19 @@ function geoImageDirection(args) {
 var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
+    UIComponent.getColumns = function () {
+        return this.prototype.tableColumns;
+    };
+    UIComponent.prototype.renderComponentAsTabular = function () {
+        var row = {};
+        for (var k in this) {
+            if (k.endsWith('-UITableField')) {
+                var _a = this[k], fieldName = _a.fieldName, value = _a.value;
+                row[fieldName] = value;
+            }
+        }
+        return row;
+    };
     UIComponent.prototype.renderGeoComponent = function () {
         var geoComponent = {
             source: '',
@@ -321,7 +354,8 @@ var UIComponent = /** @class */ (function () {
     };
     return UIComponent;
 }());
+UIComponent.prototype.tableColumns = [];
 
 export default UIComponent;
-export { source, table, field, link, documentId, documentName, documentType, hasSection, geoId, geoDataType, geoDisplayName, geoColor, geoLocations, geoDataSuperType, geoImage, geoImageDirection };
+export { source, table, field, link, documentId, documentName, documentType, hasSection, tableField, geoId, geoDataType, geoDisplayName, geoColor, geoLocations, geoDataSuperType, geoImage, geoImageDirection };
 //# sourceMappingURL=ui-component.es5.js.map

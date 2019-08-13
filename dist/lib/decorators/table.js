@@ -52,11 +52,11 @@ function createTable(rows, columns, sortOrder, sortingColumn, transform) {
 }
 exports.createTable = createTable;
 function table(_a) {
-    var label = _a.label, columns = _a.columns, sortOrder = _a.sortOrder, sortingColumn = _a.sortingColumn, transform = _a.transform, section = _a.section;
+    var title = _a.title, columns = _a.columns, sortOrder = _a.sortOrder, sortingColumn = _a.sortingColumn, transform = _a.transform, section = _a.section;
     return function (target, propName) {
         Object.defineProperty(target, propName + "-UITable", {
             get: function () {
-                return __assign({ label: label,
+                return __assign({ title: title,
                     columns: columns, type: 'table', value: createTable(this[propName], columns, sortOrder, sortingColumn, transform) }, (section && { section: section }));
             },
             enumerable: true

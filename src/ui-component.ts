@@ -8,6 +8,7 @@ export { documentId } from './decorators/documentId'
 export { documentName } from './decorators/documentName'
 export { documentType } from './decorators/documentType'
 export { hasSection, Section } from './decorators/section'
+export { tableField } from './decorators/tableField'
 export {
     geoId,
     geoDataType,
@@ -42,6 +43,23 @@ export interface GeoComponent {
 }
 
 export default class UIComponent {
+    static getColumns() {
+        return (this as any).prototype.tableColumns
+    }
+
+    renderComponentAsTabular() {
+        const row = {}
+
+        for (let k in this) {
+            if (k.endsWith('-UITableField')) {
+                const { fieldName, value } = this[k] as any
+                ;(row as any)[fieldName] = value
+            }
+        }
+
+        return row
+    }
+
     renderGeoComponent() {
         const geoComponent: GeoComponent = {
             source: '',
@@ -124,3 +142,5 @@ export default class UIComponent {
         return body
     }
 }
+
+;(UIComponent as any).prototype.tableColumns = []

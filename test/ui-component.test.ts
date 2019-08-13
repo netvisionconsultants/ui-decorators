@@ -8,6 +8,7 @@ import { documentName } from '../src/decorators/documentName'
 import { documentType } from '../src/decorators/documentType'
 import { source } from '../src/decorators/source'
 import { hasSection } from '../src/decorators/section'
+import { tableField } from '../src/decorators/tableField'
 
 describe('UIComponent', () => {
     it('UIComponent is instantiable', () => {
@@ -47,7 +48,7 @@ describe('UIComponent', () => {
         @source('Telegeography')
         class TestComponent extends UIComponent {
             @table({
-                label: 'Table Label',
+                title: 'Table Title',
                 columns: ['col3', 'col2', 'col1'],
                 sortingColumn: 'col2',
                 sortOrder: SortOrder.DESC
@@ -69,7 +70,7 @@ describe('UIComponent', () => {
         const testComponent = new TestComponent(rows)
         const json: Object = testComponent.renderComponent()
         expect(json).toHaveProperty('components')
-        expect((json as any).components[0]).toHaveProperty('label')
+        expect((json as any).components[0]).toHaveProperty('title')
         expect((json as any).components[0]).toHaveProperty('columns')
         expect((json as any).components[0]).toHaveProperty('type')
         expect((json as any).components[0]).toHaveProperty('value')
@@ -274,6 +275,41 @@ describe('UIComponent', () => {
             type: 'field',
             value: 'foo3',
             fieldName: 'foo3'
+        })
+    })
+
+    it('UIComponent.renderComponentAsTabular()', () => {
+        @source('Telegeography')
+        class TestComponent extends UIComponent {
+            @tableField({ label: 'Foo Display' })
+            foo: string
+
+            @tableField({ label: 'ID Display' })
+            id: string
+
+            @tableField({ label: 'Name Display' })
+            name: string
+
+            constructor(foo: string, id: string, name: string) {
+                super()
+                this.foo = foo
+                this.id = id
+                this.name = name
+            }
+        }
+
+        const reg = TestComponent.getColumns()
+        expect(reg).toEqual([
+            { accessor: 'foo', label: 'Foo Display' },
+            { accessor: 'id', label: 'ID Display' },
+            { accessor: 'name', label: 'Name Display' }
+        ])
+        const testComponent = new TestComponent('foo', 'id', 'name')
+        const json: Object = testComponent.renderComponentAsTabular()
+        expect(json).toEqual({
+            foo: 'foo',
+            id: 'id',
+            name: 'name'
         })
     })
 })

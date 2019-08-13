@@ -1,5 +1,5 @@
 export interface TableArgs {
-    label: string
+    title: string
     columns: Array<string>
     sortOrder?: SortOrder
     sortingColumn?: String
@@ -58,12 +58,12 @@ export function createTable(
     return transform ? transform(sortedRows) : sortedRows
 }
 
-export function table({ label, columns, sortOrder, sortingColumn, transform, section }: TableArgs) {
+export function table({ title, columns, sortOrder, sortingColumn, transform, section }: TableArgs) {
     return function(target: Object, propName: string) {
         Object.defineProperty(target, `${propName}-UITable`, {
             get() {
                 return {
-                    label,
+                    title,
                     columns,
                     type: 'table',
                     value: createTable(

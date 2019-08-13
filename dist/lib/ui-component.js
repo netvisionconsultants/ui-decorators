@@ -16,6 +16,8 @@ var documentType_1 = require("./decorators/documentType");
 exports.documentType = documentType_1.documentType;
 var section_1 = require("./decorators/section");
 exports.hasSection = section_1.hasSection;
+var tableField_1 = require("./decorators/tableField");
+exports.tableField = tableField_1.tableField;
 var geo_1 = require("./decorators/geo");
 exports.geoId = geo_1.geoId;
 exports.geoDataType = geo_1.geoDataType;
@@ -28,6 +30,19 @@ exports.geoImageDirection = geo_1.geoImageDirection;
 var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
+    UIComponent.getColumns = function () {
+        return this.prototype.tableColumns;
+    };
+    UIComponent.prototype.renderComponentAsTabular = function () {
+        var row = {};
+        for (var k in this) {
+            if (k.endsWith('-UITableField')) {
+                var _a = this[k], fieldName = _a.fieldName, value = _a.value;
+                row[fieldName] = value;
+            }
+        }
+        return row;
+    };
     UIComponent.prototype.renderGeoComponent = function () {
         var geoComponent = {
             source: '',
@@ -122,4 +137,5 @@ var UIComponent = /** @class */ (function () {
     return UIComponent;
 }());
 exports.default = UIComponent;
+UIComponent.prototype.tableColumns = [];
 //# sourceMappingURL=ui-component.js.map
