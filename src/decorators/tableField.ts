@@ -5,11 +5,6 @@ export interface TableFieldArgs {
 
 export function tableField({ label, transform }: TableFieldArgs) {
     return function(target: any, propName: string) {
-        target.tableColumns.push({
-            accessor: propName,
-            label
-        })
-
         Object.defineProperty(target, `${propName}-UITableField`, {
             get() {
                 return {

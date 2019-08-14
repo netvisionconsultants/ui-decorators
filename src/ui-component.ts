@@ -43,8 +43,19 @@ export interface GeoComponent {
 }
 
 export default class UIComponent {
-    static getColumns() {
-        return (this as any).prototype.tableColumns
+    getTableColumns() {
+        const tableColumns = []
+
+        for (let k in this) {
+            if (k.endsWith('-UITableField')) {
+                const { fieldName, label } = this[k] as any
+                tableColumns.push({
+                    accessor: fieldName,
+                    label
+                })
+            }
+        }
+        return tableColumns
     }
 
     renderComponentAsTabular() {
@@ -142,5 +153,3 @@ export default class UIComponent {
         return body
     }
 }
-
-;(UIComponent as any).prototype.tableColumns = []

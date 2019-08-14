@@ -298,7 +298,7 @@ describe('UIComponent', () => {
             }
         }
 
-        const reg = TestComponent.getColumns()
+        const reg = new TestComponent('foo', 'id', 'name').getTableColumns()
         expect(reg).toEqual([
             { accessor: 'foo', label: 'Foo Display' },
             { accessor: 'id', label: 'ID Display' },

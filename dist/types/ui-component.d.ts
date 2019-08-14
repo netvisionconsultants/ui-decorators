@@ -29,7 +29,10 @@ export interface GeoComponent {
     imageDirection: any;
 }
 export default class UIComponent {
-    static getColumns(): any;
+    getTableColumns(): {
+        accessor: any;
+        label: any;
+    }[];
     renderComponentAsTabular(): {};
     renderGeoComponent(): GeoComponent;
     renderComponent(): Component;

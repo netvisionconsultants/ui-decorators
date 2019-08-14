@@ -30,8 +30,18 @@ exports.geoImageDirection = geo_1.geoImageDirection;
 var UIComponent = /** @class */ (function () {
     function UIComponent() {
     }
-    UIComponent.getColumns = function () {
-        return this.prototype.tableColumns;
+    UIComponent.prototype.getTableColumns = function () {
+        var tableColumns = [];
+        for (var k in this) {
+            if (k.endsWith('-UITableField')) {
+                var _a = this[k], fieldName = _a.fieldName, label = _a.label;
+                tableColumns.push({
+                    accessor: fieldName,
+                    label: label
+                });
+            }
+        }
+        return tableColumns;
     };
     UIComponent.prototype.renderComponentAsTabular = function () {
         var row = {};
@@ -137,5 +147,4 @@ var UIComponent = /** @class */ (function () {
     return UIComponent;
 }());
 exports.default = UIComponent;
-UIComponent.prototype.tableColumns = [];
 //# sourceMappingURL=ui-component.js.map

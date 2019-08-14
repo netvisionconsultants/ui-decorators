@@ -155,16 +155,12 @@
     function tableField(_a) {
         var label = _a.label, transform = _a.transform;
         return function (target, propName) {
-            target.tableColumns.push({
-                accessor: propName,
-                label: label,
-            });
             Object.defineProperty(target, propName + "-UITableField", {
                 get: function () {
                     return {
                         label: label,
                         fieldName: propName,
-                        value: transform ? transform(this[propName]) : this[propName],
+                        value: transform ? transform(this[propName]) : this[propName]
                     };
                 },
                 enumerable: true
@@ -254,8 +250,18 @@
     var UIComponent = /** @class */ (function () {
         function UIComponent() {
         }
-        UIComponent.getColumns = function () {
-            return this.prototype.tableColumns;
+        UIComponent.prototype.getTableColumns = function () {
+            var tableColumns = [];
+            for (var k in this) {
+                if (k.endsWith('-UITableField')) {
+                    var _a = this[k], fieldName = _a.fieldName, label = _a.label;
+                    tableColumns.push({
+                        accessor: fieldName,
+                        label: label
+                    });
+                }
+            }
+            return tableColumns;
         };
         UIComponent.prototype.renderComponentAsTabular = function () {
             var row = {};
@@ -360,7 +366,6 @@
         };
         return UIComponent;
     }());
-    UIComponent.prototype.tableColumns = [];
 
     exports.default = UIComponent;
     exports.source = source;
