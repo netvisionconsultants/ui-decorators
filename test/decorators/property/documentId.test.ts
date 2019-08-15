@@ -1,5 +1,5 @@
 import {} from 'ts-jest'
-import { documentId } from '../../src/decorators/property/documentId'
+import { documentId } from '../../../src/decorators/property/documentId'
 
 describe('documentId() decorator', () => {
     it('documentId() defines the new property', () => {

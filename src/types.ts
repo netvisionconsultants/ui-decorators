@@ -26,7 +26,6 @@ export interface TableFieldArgs extends BaseArgs {}
 export interface GeoArgs {
     transform?: (val: any) => string
     type?: string
-    color?: string
     url?: string
 }
 

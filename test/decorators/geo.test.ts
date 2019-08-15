@@ -16,7 +16,7 @@ describe('geo', () => {
         @source('source')
         @geoDataSuperType('super')
         class TestComponent extends UIDocument {
-            @geoColor({ color: 'red' })
+            @geoColor()
             color: string
 
             @geoId()
@@ -67,7 +67,7 @@ describe('geo', () => {
         )
         const comp: any = testComponent.renderGeoDocument()
         expect(comp).toEqual({
-            color: 'red',
+            color: 'blue',
             dataType: 'wifi',
             displayName: 'McDonalds Wifi',
             documentId: 'id',
@@ -77,6 +77,25 @@ describe('geo', () => {
             geoDataSuperType: 'super',
             image: 'http://www.image.com',
             imageDirection: '123.45'
+        })
+    })
+
+    it('geoDataSuperType() should add field to prototype', () => {
+        const foo: any = {
+            prototype: {}
+        }
+        geoDataSuperType('structure')(foo)
+        expect(foo.prototype._geoDataSuperType).toEqual('structure')
+    })
+
+    it('geoLocations() transforms value', () => {
+        const foo: any = {}
+        const transform = jest.fn().mockReturnValue('transformed')
+        geoLocations({ type: 'type', transform })(foo, 'prop')
+        const val = foo['prop-GeoLocations']
+        expect(val).toEqual({
+            type: 'type',
+            value: 'transformed'
         })
     })
 })

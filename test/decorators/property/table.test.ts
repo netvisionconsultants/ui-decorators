@@ -1,6 +1,6 @@
 import {} from 'ts-jest'
-import { TableArgs, SortOrder } from '../../src/types'
-import { table } from '../../src/decorators/property/table'
+import { TableArgs, SortOrder } from '../../../src/types'
+import { table } from '../../../src/decorators/property/table'
 
 const tableValue: any = [
     { col2: '3', col1: 'col1', col3: 'c' },
