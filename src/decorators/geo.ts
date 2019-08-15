@@ -1,14 +1,4 @@
-export interface GeoArgs {
-    transform?: (val: any) => string
-    type?: string
-    color?: string
-    url?: string
-}
-
-export interface GeoLocationsArgs {
-    type: string
-    transform?: (val: any) => string
-}
+import { GeoArgs } from '../types'
 
 export function geoId(args?: GeoArgs) {
     return function(target: Object, propName: string) {

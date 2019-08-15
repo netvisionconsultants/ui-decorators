@@ -1,5 +1,6 @@
 import {} from 'ts-jest'
-import { TableArgs, table, SortOrder } from '../../src/decorators/table'
+import { TableArgs, SortOrder } from '../../src/types'
+import { table } from '../../src/decorators/property/table'
 
 const tableValue: any = [
     { col2: '3', col1: 'col1', col3: 'c' },
@@ -33,8 +34,7 @@ describe('table() decorator', () => {
         const args: TableArgs = {
             title: 'Table Title',
             columns: ['col3', 'col2', 'col1'],
-            sortingColumn: 'col3',
-            section: 'section1'
+            sortingColumn: 'col3'
         }
         table(args)(target, prop)
         const testTable: Object = target['testProp-UITable']

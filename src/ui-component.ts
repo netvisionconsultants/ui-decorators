@@ -1,14 +1,19 @@
-import { geoDataSuperType } from './decorators/geo'
-
-export { source } from './decorators/source'
-export { table, TableArgs } from './decorators/table'
-export { field, FieldArgs } from './decorators/field'
-export { link, LinkArgs } from './decorators/link'
-export { documentId } from './decorators/documentId'
-export { documentName } from './decorators/documentName'
-export { documentType } from './decorators/documentType'
-export { hasSection, Section } from './decorators/section'
-export { tableField } from './decorators/tableField'
+import {
+    Component,
+    IUIDocument,
+    DocumentBody,
+    GeoDocumentBody,
+    TableColumns,
+    TableRow
+} from './types'
+export { source } from './decorators/class/source'
+export { table } from './decorators/property/table'
+export { field } from './decorators/property/field'
+export { link } from './decorators/property/link'
+export { documentId } from './decorators/property/documentId'
+export { documentName } from './decorators/property/documentName'
+export { documentType } from './decorators/class/documentType'
+export { tableField } from './decorators/property/tableField'
 export {
     geoId,
     geoDataType,
@@ -20,31 +25,11 @@ export {
     geoImageDirection
 } from './decorators/geo'
 
-export interface Component {
-    components: Array<any>
-    source: any
-    documentId: any
-    documentName: any
-    documentType: any
-    sections: any
-}
+export default class UIDocument implements IUIDocument {
+    [key: string]: any
 
-export interface GeoComponent {
-    source: any
-    documentId: any
-    dataType: any
-    geoType: any
-    locations: any
-    displayName: any
-    color: any
-    geoDataSuperType: any
-    image: any
-    imageDirection: any
-}
-
-export default class UIComponent {
-    getTableColumns() {
-        const tableColumns = []
+    getTableColumns(): TableColumns {
+        const tableColumns: TableColumns = []
 
         for (let k in this) {
             if (k.endsWith('-UITableField')) {
@@ -58,21 +43,21 @@ export default class UIComponent {
         return tableColumns
     }
 
-    renderComponentAsTabular() {
-        const row = {}
+    renderDocumentAsTabular() {
+        const row: TableRow = {}
 
-        for (let k in this) {
+        for (const k in this) {
             if (k.endsWith('-UITableField')) {
                 const { fieldName, value } = this[k] as any
-                ;(row as any)[fieldName] = value
+                row[fieldName] = value
             }
         }
 
         return row
     }
 
-    renderGeoComponent() {
-        const geoComponent: GeoComponent = {
+    renderGeoDocument() {
+        const geoComponent: GeoDocumentBody = {
             source: '',
             documentId: '',
             dataType: '',
@@ -99,8 +84,8 @@ export default class UIComponent {
             } else if (k.endsWith('GeoImageDirection')) {
                 geoComponent.imageDirection = this[k]
             } else if (k.endsWith('GeoLocations')) {
-                geoComponent.locations = (this[k] as any).value
-                geoComponent.geoType = (this[k] as any).type
+                geoComponent.locations = this[k].value
+                geoComponent.geoType = this[k].type
             } else if (k === '_source') {
                 geoComponent.source = this[k]
             } else if (k === '_geoDataSuperType') {
@@ -110,11 +95,9 @@ export default class UIComponent {
         return geoComponent
     }
 
-    renderComponent() {
-        let sections: any = {}
-        const body: Component = {
+    renderDocument() {
+        const body: DocumentBody = {
             components: [],
-            sections: [],
             documentId: '',
             documentName: '',
             documentType: '',
@@ -123,15 +106,8 @@ export default class UIComponent {
 
         for (let k in this) {
             if (k.endsWith('UIField') || k.endsWith('UITable') || k.endsWith('UILink')) {
-                const component: any = this[k]
-                if (component.section) {
-                    if (!sections[component.section]) {
-                        sections[component.section] = { components: [] }
-                    }
-                    sections[component.section].components.push(this[k])
-                } else {
-                    body.components.push(component)
-                }
+                const component: Component = this[k]
+                body.components.push(component)
             } else if (k === '_source') {
                 body.source = this[k]
             } else if (k === '_documentId') {
@@ -141,14 +117,6 @@ export default class UIComponent {
             } else if (k === '_documentType') {
                 body.documentType = this[k]
             }
-        }
-        for (const key in sections) {
-            body.sections.push({
-                type: 'section',
-                title: (this as any)['_hasSections'][key].title,
-                order: (this as any)['_hasSections'][key].order,
-                components: sections[key].components
-            })
         }
         return body
     }

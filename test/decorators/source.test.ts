@@ -1,5 +1,5 @@
 import {} from 'ts-jest'
-import { source } from '../../src/decorators/source'
+import { source } from '../../src/decorators/class/source'
 
 describe('source() decorator', () => {
     it('source() adds the _source field to a contructor', () => {

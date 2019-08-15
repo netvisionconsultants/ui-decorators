@@ -1,16 +1,4 @@
-export interface TableArgs {
-    title: string
-    columns: Array<string>
-    sortOrder?: SortOrder
-    sortingColumn?: String
-    transform?: (val: Array<any>) => Array<any>
-    section?: string
-}
-
-export enum SortOrder {
-    ASC = 'ASC',
-    DESC = 'DESC'
-}
+import { TableArgs, SortOrder, TableComponent } from '../../types'
 
 export function createTable(
     rows: Array<any>,
@@ -58,23 +46,17 @@ export function createTable(
     return transform ? transform(sortedRows) : sortedRows
 }
 
-export function table({ title, columns, sortOrder, sortingColumn, transform, section }: TableArgs) {
+export function table({ title, columns, sortOrder, sortingColumn, transform }: TableArgs) {
     return function(target: Object, propName: string) {
         Object.defineProperty(target, `${propName}-UITable`, {
             get() {
-                return {
+                const component: TableComponent = {
                     title,
                     columns,
                     type: 'table',
-                    value: createTable(
-                        this[propName],
-                        columns,
-                        sortOrder,
-                        sortingColumn,
-                        transform
-                    ),
-                    ...(section && { section })
+                    value: createTable(this[propName], columns, sortOrder, sortingColumn, transform)
                 }
+                return component
             },
             enumerable: true
         })

@@ -1,5 +1,6 @@
 import {} from 'ts-jest'
-import { field, FieldArgs } from '../../src/decorators/field'
+import { FieldArgs } from '../../src/types'
+import { field } from '../../src/decorators/property/field'
 
 describe('field() decorator', () => {
     it('field() defines the new property', () => {

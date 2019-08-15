@@ -1,5 +1,6 @@
 import {} from 'ts-jest'
-import { link, LinkArgs } from '../../src/decorators/link'
+import { LinkArgs } from '../../src/types'
+import { link } from '../../src/decorators/property/link'
 
 describe('link() decorator', () => {
     it('link() defines the new property', () => {

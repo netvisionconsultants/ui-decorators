@@ -1,5 +1,5 @@
 import {} from 'ts-jest'
-import UIComponent, { source } from '../../src/ui-component'
+import UIDocument, { source } from '../../src/ui-component'
 import {
     geoId,
     geoDataType,
@@ -12,10 +12,10 @@ import {
 } from '../../src/decorators/geo'
 
 describe('geo', () => {
-    it('UIComponent.renderGeoComponent() should render', () => {
+    it('UIDocument.renderGeoDocument() should render', () => {
         @source('source')
         @geoDataSuperType('super')
-        class TestComponent extends UIComponent {
+        class TestComponent extends UIDocument {
             @geoColor({ color: 'red' })
             color: string
 
@@ -65,7 +65,7 @@ describe('geo', () => {
             'http://www.image.com',
             '123.45 degrees'
         )
-        const comp: any = testComponent.renderGeoComponent()
+        const comp: any = testComponent.renderGeoDocument()
         expect(comp).toEqual({
             color: 'red',
             dataType: 'wifi',

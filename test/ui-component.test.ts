@@ -1,30 +1,30 @@
 import {} from 'ts-jest'
-import UIComponent from '../src/ui-component'
-import { table, SortOrder } from '../src/decorators/table'
-import { field, FieldArgs } from '../src/decorators/field'
-import { link, LinkArgs } from '../src/decorators/link'
-import { documentId } from '../src/decorators/documentId'
-import { documentName } from '../src/decorators/documentName'
-import { documentType } from '../src/decorators/documentType'
-import { source } from '../src/decorators/source'
-import { hasSection } from '../src/decorators/section'
-import { tableField } from '../src/decorators/tableField'
+import UIDocument from '../src/ui-component'
+import { SortOrder } from '../src/types'
+import { table } from '../src/decorators/property/table'
+import { field } from '../src/decorators/property/field'
+import { link } from '../src/decorators/property/link'
+import { documentId } from '../src/decorators/property/documentId'
+import { documentName } from '../src/decorators/property/documentName'
+import { documentType } from '../src/decorators/class/documentType'
+import { source } from '../src/decorators/class/source'
+import { tableField } from '../src/decorators/property/tableField'
 
-describe('UIComponent', () => {
-    it('UIComponent is instantiable', () => {
-        expect(new UIComponent()).toBeInstanceOf(UIComponent)
+describe('UIDocument', () => {
+    it('UIDocument is instantiable', () => {
+        expect(new UIDocument()).toBeInstanceOf(UIDocument)
     })
 
-    it('UIComponent.renderComponent() should return default JSON', () => {
-        const component = new UIComponent()
-        const json = component.renderComponent()
+    it('UIDocument.renderDocument() should return default JSON', () => {
+        const component = new UIDocument()
+        const json = component.renderDocument()
         expect(json).toHaveProperty('components')
         expect(json).toHaveProperty('source')
     })
 
-    it('UIComponent.renderComponent() should add UIFields', () => {
+    it('UIDocument.renderDocument() should add UIFields', () => {
         @source('Telegeography')
-        class TestComponent extends UIComponent {
+        class TestComponent extends UIDocument {
             @field({ label: 'label', transform: val => `${val}-changed` })
             foo: string
 
@@ -34,7 +34,7 @@ describe('UIComponent', () => {
             }
         }
         const testComponent = new TestComponent('foo')
-        const json: Object = testComponent.renderComponent()
+        const json: Object = testComponent.renderDocument()
         expect(json).toHaveProperty('components')
         expect((json as any).components[0]).toHaveProperty('label')
         expect((json as any).components[0]).toHaveProperty('type')
@@ -44,9 +44,9 @@ describe('UIComponent', () => {
         expect((json as any).components[0].value).toEqual('foo-changed')
     })
 
-    it('UIComponent.renderComponent() should add UITables', () => {
+    it('UIDocument.renderDocument() should add UITables', () => {
         @source('Telegeography')
-        class TestComponent extends UIComponent {
+        class TestComponent extends UIDocument {
             @table({
                 title: 'Table Title',
                 columns: ['col3', 'col2', 'col1'],
@@ -68,7 +68,7 @@ describe('UIComponent', () => {
             { col2: '5', col1: 'col1', col3: 'd' }
         ]
         const testComponent = new TestComponent(rows)
-        const json: Object = testComponent.renderComponent()
+        const json: Object = testComponent.renderDocument()
         expect(json).toHaveProperty('components')
         expect((json as any).components[0]).toHaveProperty('title')
         expect((json as any).components[0]).toHaveProperty('columns')
@@ -77,9 +77,9 @@ describe('UIComponent', () => {
         expect((json as any).components[0].value[0]).toEqual(['d', '5', 'col1'])
     })
 
-    it('UIComponent.renderComponent() should add source field', () => {
+    it('UIDocument.renderDocument() should add source field', () => {
         @source('Telegeography')
-        class TestComponent extends UIComponent {
+        class TestComponent extends UIDocument {
             @field({ label: 'label', transform: val => `${val}-changed` })
             foo: string
 
@@ -89,14 +89,14 @@ describe('UIComponent', () => {
             }
         }
         const testComponent = new TestComponent('foo')
-        const json: Object = testComponent.renderComponent()
+        const json: Object = testComponent.renderDocument()
         expect(json).toHaveProperty('source')
         expect((json as any).source).toEqual('Telegeography')
     })
-    it('UIComponent.renderComponent() should add documentType', () => {
+    it('UIDocument.renderDocument() should add documentType', () => {
         @source('Telegeography')
         @documentType('cable')
-        class TestComponent extends UIComponent {
+        class TestComponent extends UIDocument {
             @field({ label: 'label', transform: val => `${val}-changed` })
             foo: string
 
@@ -106,13 +106,13 @@ describe('UIComponent', () => {
             }
         }
         const testComponent = new TestComponent('foo')
-        const json: Object = testComponent.renderComponent()
+        const json: Object = testComponent.renderDocument()
         expect(json).toHaveProperty('documentType')
         expect((json as any).documentType).toEqual('cable')
     })
-    it('UIComponent.renderComponent() should add link field', () => {
+    it('UIDocument.renderDocument() should add link field', () => {
         @source('Telegeography')
-        class TestComponent extends UIComponent {
+        class TestComponent extends UIDocument {
             @field({ label: 'label', transform: val => `${val}-changed` })
             foo: string
 
@@ -126,15 +126,15 @@ describe('UIComponent', () => {
             }
         }
         const testComponent = new TestComponent('foo', 'google')
-        const json: Object = testComponent.renderComponent()
+        const json: Object = testComponent.renderDocument()
         expect((json as any).components[1]).toHaveProperty('type')
         expect((json as any).components[1].type).toEqual('link')
         expect((json as any).components[1].url).toEqual('http://www.google.com')
         expect((json as any).source).toEqual('Telegeography')
     })
-    it('UIComponent.renderComponent() should add documentId field', () => {
+    it('UIDocument.renderDocument() should add documentId field', () => {
         @source('Telegeography')
-        class TestComponent extends UIComponent {
+        class TestComponent extends UIDocument {
             @field({ label: 'label', transform: val => `${val}-changed` })
             foo: string
 
@@ -152,13 +152,13 @@ describe('UIComponent', () => {
             }
         }
         const testComponent = new TestComponent('foo', 'google', 'abcd1234')
-        const json: Object = testComponent.renderComponent()
+        const json: Object = testComponent.renderDocument()
         expect(json as any).toHaveProperty('documentId')
         expect((json as any).documentId).toEqual('abcd1234')
     })
-    it('UIComponent.renderComponent() should add documentName field', () => {
+    it('UIDocument.renderDocument() should add documentName field', () => {
         @source('Telegeography')
-        class TestComponent extends UIComponent {
+        class TestComponent extends UIDocument {
             @field({ label: 'label', transform: val => `${val}-changed` })
             foo: string
 
@@ -176,111 +176,14 @@ describe('UIComponent', () => {
             }
         }
         const testComponent = new TestComponent('foo', 'google', 'abcd1234')
-        const json: Object = testComponent.renderComponent()
+        const json: Object = testComponent.renderDocument()
         expect(json as any).toHaveProperty('documentId')
         expect((json as any).documentName).toEqual('abcd1234')
     })
-    it('UIComponent.renderComponent() should add sections', () => {
+
+    it('UIDocument.renderDocumentAsTabular()', () => {
         @source('Telegeography')
-        @hasSection({ name: 'section1', title: 'Section One', order: 1 })
-        class TestComponent extends UIComponent {
-            @field({ label: 'foo field', section: 'section1' })
-            foo: string
-
-            @link({ label: 'foo2 link', url: 'http://www.google.com', section: 'section1' })
-            foo2: string
-
-            @field({ label: 'foo3 no section' })
-            foo3: string
-
-            @documentId()
-            id: string
-
-            constructor(foo: string, foo2: string, foo3: string, id: string) {
-                super()
-                this.foo = foo
-                this.foo2 = foo2
-                this.foo3 = foo3
-                this.id = id
-            }
-        }
-        const testComponent = new TestComponent('foo', 'google', 'foo3', 'abcd1234')
-        const json: any = testComponent.renderComponent()
-        expect(json).toHaveProperty('components')
-        expect(json).toHaveProperty('sections')
-        expect(json.sections).toHaveLength(1)
-        expect(json.sections[0].components).toHaveLength(2)
-        expect(json.components).toHaveLength(1)
-        expect(json.components[0]).toEqual({
-            displayEmpty: false,
-            label: 'foo3 no section',
-            longValue: false,
-            type: 'field',
-            value: 'foo3',
-            fieldName: 'foo3'
-        })
-    })
-    it('UIComponent.renderComponent() adds multiple sections', () => {
-        @source('Telegeography')
-        @hasSection({ name: 'section1', title: 'Section One', order: 1 })
-        @hasSection({ name: 'section2', title: 'Section Two', order: 2 })
-        class TestComponent extends UIComponent {
-            @field({ label: 'foo field', section: 'section1' })
-            foo: string
-
-            @link({ label: 'foo2 link', url: 'http://www.google.com', section: 'section2' })
-            foo2: string
-
-            @field({ label: 'foo3 no section' })
-            foo3: string
-
-            @documentId()
-            id: string
-
-            constructor(foo: string, foo2: string, foo3: string, id: string) {
-                super()
-                this.foo = foo
-                this.foo2 = foo2
-                this.foo3 = foo3
-                this.id = id
-            }
-        }
-        const testComponent = new TestComponent('foo', 'google', 'foo3', 'abcd1234')
-        const json: any = testComponent.renderComponent()
-        expect(json).toHaveProperty('components')
-        expect(json).toHaveProperty('sections')
-        expect(json.sections).toHaveLength(2)
-        expect(json.sections[0].components).toHaveLength(1)
-        expect(json.components).toHaveLength(1)
-        expect(json.components[0]).toEqual({
-            displayEmpty: false,
-            label: 'foo3 no section',
-            longValue: false,
-            type: 'field',
-            value: 'foo3',
-            fieldName: 'foo3'
-        })
-
-        const testComponent2 = new TestComponent('foo', 'google', 'foo3', 'abcd1234')
-        const json2: any = testComponent.renderComponent()
-        expect(json2).toHaveProperty('components')
-        expect(json).toHaveProperty('sections')
-        expect(json.sections[1]).toHaveProperty('components')
-        expect(json.sections[1].components).toHaveLength(1)
-        expect(json2.components).toHaveLength(1)
-        expect(json2.components[0]).toEqual({
-            displayEmpty: false,
-            label: 'foo3 no section',
-            longValue: false,
-            type: 'field',
-            value: 'foo3',
-            fieldName: 'foo3'
-        })
-    })
-
-    it('UIComponent.renderComponentAsTabular()', () => {
-        @source('Telegeography')
-        class TestComponent extends UIComponent {
+        class TestComponent extends UIDocument {
             @tableField({ label: 'Foo Display' })
             foo: string
 
@@ -305,7 +208,7 @@ describe('UIComponent', () => {
             { accessor: 'name', label: 'Name Display' }
         ])
         const testComponent = new TestComponent('foo', 'id', 'name')
-        const json: Object = testComponent.renderComponentAsTabular()
+        const json: Object = testComponent.renderDocumentAsTabular()
         expect(json).toEqual({
             foo: 'foo',
             id: 'id',
