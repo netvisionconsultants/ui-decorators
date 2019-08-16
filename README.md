@@ -13,7 +13,7 @@ This project was the result of wanting to decorate TypeScript classes and member
 ### Usage
 
 ```typescript
-import UIComponent, {
+import UIDocument, {
     field,
     link,
     table,
