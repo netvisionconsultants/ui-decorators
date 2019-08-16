@@ -1,1 +1,0 @@
-{"version":3,"file":"documentName.js","sourceRoot":"","sources":["../../../src/decorators/documentName.ts"],"names":[],"mappings":";;AAAA,SAAgB,YAAY;IACxB,OAAO,UAAS,MAAc,EAAE,QAAgB;QAC5C,MAAM,CAAC,cAAc,CAAC,MAAM,EAAE,eAAe,EAAE;YAC3C,GAAG;gBACC,OAAO,IAAI,CAAC,QAAQ,CAAC,CAAA;YACzB,CAAC;YACD,UAAU,EAAE,IAAI;SACnB,CAAC,CAAA;IACN,CAAC,CAAA;AACL,CAAC;AATD,oCASC"}

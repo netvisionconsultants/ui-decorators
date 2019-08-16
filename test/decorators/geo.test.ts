@@ -1,5 +1,5 @@
 import {} from 'ts-jest'
-import UIComponent, { source } from '../../src/ui-component'
+import UIDocument, { source } from '../../src/UIDocument'
 import {
     geoId,
     geoDataType,
@@ -12,11 +12,11 @@ import {
 } from '../../src/decorators/geo'
 
 describe('geo', () => {
-    it('UIComponent.renderGeoComponent() should render', () => {
+    it('UIDocument.renderGeoDocument() should render', () => {
         @source('source')
         @geoDataSuperType('super')
-        class TestComponent extends UIComponent {
-            @geoColor({ color: 'red' })
+        class TestComponent extends UIDocument {
+            @geoColor()
             color: string
 
             @geoId()
@@ -65,9 +65,9 @@ describe('geo', () => {
             'http://www.image.com',
             '123.45 degrees'
         )
-        const comp: any = testComponent.renderGeoComponent()
+        const comp: any = testComponent.renderGeoDocument()
         expect(comp).toEqual({
-            color: 'red',
+            color: 'blue',
             dataType: 'wifi',
             displayName: 'McDonalds Wifi',
             documentId: 'id',
@@ -77,6 +77,25 @@ describe('geo', () => {
             geoDataSuperType: 'super',
             image: 'http://www.image.com',
             imageDirection: '123.45'
+        })
+    })
+
+    it('geoDataSuperType() should add field to prototype', () => {
+        const foo: any = {
+            prototype: {}
+        }
+        geoDataSuperType('structure')(foo)
+        expect(foo.prototype._geoDataSuperType).toEqual('structure')
+    })
+
+    it('geoLocations() transforms value', () => {
+        const foo: any = {}
+        const transform = jest.fn().mockReturnValue('transformed')
+        geoLocations({ type: 'type', transform })(foo, 'prop')
+        const val = foo['prop-GeoLocations']
+        expect(val).toEqual({
+            type: 'type',
+            value: 'transformed'
         })
     })
 })
