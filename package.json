@@ -1,11 +1,11 @@
 {
   "name": "ui-decorators",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "keywords": [],
-  "main": "dist/ui-component.umd.js",
-  "module": "dist/ui-component.es5.js",
-  "typings": "dist/types/ui-component.d.ts",
+  "main": "dist/ui-decorators.umd.js",
+  "module": "dist/ui-decorators.es5.js",
+  "typings": "dist/types/ui-decorators.d.ts",
   "files": [
     "dist"
   ],
