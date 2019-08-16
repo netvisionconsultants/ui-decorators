@@ -5,7 +5,7 @@
   "keywords": [],
   "main": "dist/ui-decorators.umd.js",
   "module": "dist/ui-decorators.es5.js",
-  "typings": "dist/types/ui-decorators.d.ts",
+  "typings": "dist/types/UIDocument.d.ts",
   "files": [
     "dist"
   ],
