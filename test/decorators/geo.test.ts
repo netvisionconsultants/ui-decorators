@@ -1,5 +1,5 @@
 import {} from 'ts-jest'
-import UIDocument, { source } from '../../src/ui-component'
+import UIDocument, { source } from '../../src/UIDocument'
 import {
     geoId,
     geoDataType,

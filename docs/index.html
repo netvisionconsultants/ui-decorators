@@ -2492,7 +2492,7 @@ img {
 			<a href="#why" id="why" style="color: inherit; text-decoration: none;">
 				<h3>Why?</h3>
 			</a>
-			<p>This project was the result of wanting to decorate TypeScript classes and members with UI specific code for rendering in a web application. This allows the developer to create a plain TypeScript class as a data transfer object, but adds an additional <code>renderComponent()</code> method which will provide the UI specific rendering of the object. This object can then be passed to a web application for dynamic result rendering.</p>
+			<p>This project was the result of wanting to decorate TypeScript classes and members with UI specific code for rendering in a web application. This allows the developer to create a plain TypeScript class as a data transfer object, but adds an additional <code>renderDocument()</code> method which will provide the UI specific rendering of the object. This object can then be passed to a web application for dynamic result rendering.</p>
 			<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 				<h3>Usage</h3>
 			</a>
@@ -2505,7 +2505,7 @@ img {
 } <span class="hljs-keyword">from</span> <span class="hljs-string">"ui-decorators"</span>;
 
 <span class="hljs-meta">@source</span>(<span class="hljs-string">'MyTodoList'</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> TodoItem <span class="hljs-keyword">extends</span> UIComponent {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> TodoItem <span class="hljs-keyword">extends</span> UIDocument {
     <span class="hljs-meta">@documentId</span>()
     id: <span class="hljs-built_in">string</span>;
 
@@ -2537,7 +2537,7 @@ img {
     { id: <span class="hljs-number">3</span>, name: <span class="hljs-string">'cleanRoom'</span>, <span class="hljs-string">'Clean out my room'</span> },
 ]
 <span class="hljs-keyword">const</span> item = <span class="hljs-keyword">new</span> TodoItem(<span class="hljs-string">'Finish chores'</span>, <span class="hljs-string">'Finish all of my chores'</span>, subTasks, <span class="hljs-string">'uuid-1234'</span>);
-<span class="hljs-built_in">console</span>.log(item.renderComponent());</code></pre>
+<span class="hljs-built_in">console</span>.log(item.renderDocument());</code></pre>
 			<p>Which will return a JSON object that looks like:</p>
 			<pre><code class="language-json">{
     <span class="hljs-attr">"source"</span>: <span class="hljs-string">"MyTodoList"</span>,
@@ -2640,7 +2640,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">Table<wbr>Columns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L1">types.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/types.ts#L1">types.ts:1</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2657,7 +2657,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/property/table.ts#L3">decorators/property/table.ts:3</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/property/table.ts#L3">decorators/property/table.ts:3</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2692,7 +2692,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/property/documentId.ts#L1">decorators/property/documentId.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/property/documentId.ts#L1">decorators/property/documentId.ts:1</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -2709,7 +2709,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/property/documentName.ts#L1">decorators/property/documentName.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/property/documentName.ts#L1">decorators/property/documentName.ts:1</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -2726,7 +2726,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/class/documentType.ts#L1">decorators/class/documentType.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/class/documentType.ts#L1">decorators/class/documentType.ts:1</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2749,7 +2749,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/property/field.ts#L3">decorators/property/field.ts:3</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/property/field.ts#L3">decorators/property/field.ts:3</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2786,7 +2786,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/geo.ts#L40">decorators/geo.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/geo.ts#L40">decorators/geo.ts:40</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2809,7 +2809,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/geo.ts#L3">decorators/geo.ts:3</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/geo.ts#L3">decorators/geo.ts:3</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2832,7 +2832,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/geo.ts#L24">decorators/geo.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/geo.ts#L24">decorators/geo.ts:24</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2855,7 +2855,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/geo.ts#L28">decorators/geo.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/geo.ts#L28">decorators/geo.ts:28</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2878,7 +2878,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/geo.ts#L20">decorators/geo.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/geo.ts#L20">decorators/geo.ts:20</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2901,7 +2901,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/geo.ts#L32">decorators/geo.ts:32</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/geo.ts#L32">decorators/geo.ts:32</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2924,7 +2924,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/geo.ts#L36">decorators/geo.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/geo.ts#L36">decorators/geo.ts:36</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2947,7 +2947,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/geo.ts#L44">decorators/geo.ts:44</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/geo.ts#L44">decorators/geo.ts:44</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2970,7 +2970,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/property/link.ts#L3">decorators/property/link.ts:3</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/property/link.ts#L3">decorators/property/link.ts:3</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3004,7 +3004,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/geo.ts#L9">decorators/geo.ts:9</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/geo.ts#L9">decorators/geo.ts:9</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3030,7 +3030,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/class/source.ts#L1">decorators/class/source.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/class/source.ts#L1">decorators/class/source.ts:1</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3053,7 +3053,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/property/table.ts#L49">decorators/property/table.ts:49</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/property/table.ts#L49">decorators/property/table.ts:49</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3093,7 +3093,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/decorators/property/tableField.ts#L3">decorators/property/tableField.ts:3</a></li>
+								<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/8283141/src/decorators/property/tableField.ts#L3">decorators/property/tableField.ts:3</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>

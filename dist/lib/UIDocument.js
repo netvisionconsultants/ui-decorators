@@ -127,4 +127,4 @@ var UIDocument = /** @class */ (function () {
     return UIDocument;
 }());
 exports.default = UIDocument;
-//# sourceMappingURL=ui-component.js.map
+//# sourceMappingURL=UIDocument.js.map

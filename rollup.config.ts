@@ -7,7 +7,7 @@ import json from 'rollup-plugin-json'
 
 const pkg = require('./package.json')
 
-const libraryName = 'ui-component'
+const libraryName = 'UIDocument'
 
 export default {
   input: `src/${libraryName}.ts`,

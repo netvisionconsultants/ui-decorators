@@ -1,5 +1,5 @@
 import {} from 'ts-jest'
-import UIDocument from '../src/ui-component'
+import UIDocument from '../src/UIDocument'
 import { SortOrder } from '../src/types'
 import { table } from '../src/decorators/property/table'
 import { field } from '../src/decorators/property/field'
