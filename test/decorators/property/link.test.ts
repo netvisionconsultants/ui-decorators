@@ -1,5 +1,5 @@
 import {} from 'ts-jest'
-import { LinkArgs } from '../../../src/types'
+import { LinkArgs, Component } from '../../../src/types'
 import { link } from '../../../src/decorators/property/link'
 
 describe('link() decorator', () => {
@@ -11,11 +11,14 @@ describe('link() decorator', () => {
             url: 'http://www.google.com'
         }
         link(args)(target, prop)
-        const testField: Object = target['testProp-UILink']
-        expect(testField).toHaveProperty('label')
-        expect(testField).toHaveProperty('url')
-        expect(testField).toHaveProperty('type')
+        const component: Component = target['testProp-UILink']
+        expect(component).toEqual({
+            label: 'label',
+            type: 'link',
+            url: 'http://www.google.com'
+        })
     })
+
     it('transform() is called', () => {
         const target: any = { testProp: 'originalVal' }
         const prop = 'testProp'
@@ -25,10 +28,11 @@ describe('link() decorator', () => {
             transform: val => `${val}-test`
         }
         link(args)(target, prop)
-        const testField: Object = target['testProp-UILink']
-        expect(testField).toHaveProperty('label')
-        expect(testField).toHaveProperty('type')
-        expect(testField).toHaveProperty('url')
-        expect((testField as any).url).toBe('http://www.google.com-test')
+        const component: Component = target['testProp-UILink']
+        expect(component).toEqual({
+            label: 'label',
+            type: 'link',
+            url: 'http://www.google.com-test'
+        })
     })
 })

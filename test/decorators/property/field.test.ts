@@ -1,5 +1,5 @@
 import {} from 'ts-jest'
-import { FieldArgs } from '../../../src/types'
+import { FieldArgs, Component } from '../../../src/types'
 import { field } from '../../../src/decorators/property/field'
 
 describe('field() decorator', () => {
@@ -11,24 +11,15 @@ describe('field() decorator', () => {
             transform: val => `${val}-test`
         }
         field(args)(target, prop)
-        const testField: Object = target['testProp-UIField']
-        expect(testField).toHaveProperty('label')
-        expect(testField).toHaveProperty('type')
-        expect(testField).toHaveProperty('value')
-    })
-    it('transform() is called', () => {
-        const target: any = { testProp: 'originalVal' }
-        const prop = 'testProp'
-        const args: FieldArgs = {
+        const component: Component = target['testProp-UIField']
+        expect(component).toEqual({
+            displayEmpty: false,
+            fieldName: 'testProp',
             label: 'label',
-            transform: val => `${val}-test`
-        }
-        field(args)(target, prop)
-        const testField: Object = target['testProp-UIField']
-        expect(testField).toHaveProperty('label')
-        expect(testField).toHaveProperty('type')
-        expect(testField).toHaveProperty('value')
-        expect((testField as any).value).toBe('originalVal-test')
+            longValue: false,
+            type: 'field',
+            value: 'originalVal-test'
+        })
     })
 
     it('transform, displayEmpty, and longValue are optional', () => {
@@ -38,13 +29,18 @@ describe('field() decorator', () => {
             label: 'label'
         }
         field(args)(target, prop)
-        const testField: Object = target['testProp-UIField']
-        expect(testField).toHaveProperty('label')
-        expect(testField).toHaveProperty('type')
-        expect(testField).toHaveProperty('value')
-        expect((testField as any).value).toBe('originalVal')
+        const component: Component = target['testProp-UIField']
+        expect(component).toEqual({
+            displayEmpty: false,
+            fieldName: 'testProp',
+            label: 'label',
+            longValue: false,
+            type: 'field',
+            value: 'originalVal'
+        })
     })
-    it('displayEmpty returns', () => {
+
+    it('displayEmpty is set', () => {
         const target: any = { testProp: 'originalVal' }
         const prop = 'testProp'
         const args: FieldArgs = {
@@ -52,11 +48,18 @@ describe('field() decorator', () => {
             displayEmpty: true
         }
         field(args)(target, prop)
-        const testField: Object = target['testProp-UIField']
-        expect(testField).toHaveProperty('displayEmpty')
-        expect((testField as any).displayEmpty).toBe(true)
+        const component: Component = target['testProp-UIField']
+        expect(component).toEqual({
+            displayEmpty: true,
+            fieldName: 'testProp',
+            label: 'label',
+            longValue: false,
+            type: 'field',
+            value: 'originalVal'
+        })
     })
-    it('longValue returns', () => {
+
+    it('longValue is set', () => {
         const target: any = { testProp: 'originalVal' }
         const prop = 'testProp'
         const args: FieldArgs = {
@@ -64,8 +67,14 @@ describe('field() decorator', () => {
             longValue: true
         }
         field(args)(target, prop)
-        const testField: Object = target['testProp-UIField']
-        expect(testField).toHaveProperty('longValue')
-        expect((testField as any).longValue).toBe(true)
+        const component: Component = target['testProp-UIField']
+        expect(component).toEqual({
+            displayEmpty: false,
+            fieldName: 'testProp',
+            label: 'label',
+            longValue: true,
+            type: 'field',
+            value: 'originalVal'
+        })
     })
 })
