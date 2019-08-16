@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TableFieldArgs | ui-decorators</title>
+	<title>TableComponent | ui-decorators</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -2410,19 +2410,37 @@ img {
 		<li class=" tsd-kind-interface">
 			<a href="tableargs.html" class="tsd-kind-icon">Table<wbr>Args</a>
 		</li>
-		<li class=" tsd-kind-interface">
-			<a href="tablecomponent.html" class="tsd-kind-icon">Table<wbr>Component</a>
-		</li>
 		<li class="current tsd-kind-interface">
-			<a href="tablefieldargs.html" class="tsd-kind-icon">Table<wbr>Field<wbr>Args</a>
+			<a href="tablecomponent.html" class="tsd-kind-icon">Table<wbr>Component</a>
 			<ul>
-				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a href="tablefieldargs.html#label" class="tsd-kind-icon">label</a>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="tablecomponent.html#columns" class="tsd-kind-icon">columns</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a href="tablefieldargs.html#transform" class="tsd-kind-icon">transform</a>
+					<a href="tablecomponent.html#displayempty" class="tsd-kind-icon">display<wbr>Empty</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a href="tablecomponent.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+					<a href="tablecomponent.html#label" class="tsd-kind-icon">label</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a href="tablecomponent.html#longvalue" class="tsd-kind-icon">long<wbr>Value</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a href="tablecomponent.html#type" class="tsd-kind-icon">type</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a href="tablecomponent.html#url" class="tsd-kind-icon">url</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a href="tablecomponent.html#value" class="tsd-kind-icon">value</a>
 				</li>
 			</ul>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="tablefieldargs.html" class="tsd-kind-icon">Table<wbr>Field<wbr>Args</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="tablerow.html" class="tsd-kind-icon">Table<wbr>Row</a>
@@ -2492,10 +2510,10 @@ img {
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<a href="baseargs.html" class="tsd-signature-type">BaseArgs</a>
+					<a href="component.html" class="tsd-signature-type">Component</a>
 					<ul class="tsd-hierarchy">
 						<li>
-							<span class="target">TableFieldArgs</span>
+							<span class="target">TableComponent</span>
 						</li>
 					</ul>
 				</li>
@@ -2505,37 +2523,108 @@ img {
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
-					<section class="tsd-index-section tsd-is-inherited">
+					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tablefieldargs.html#label" class="tsd-kind-icon">label</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tablefieldargs.html#transform" class="tsd-kind-icon">transform</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tablecomponent.html#columns" class="tsd-kind-icon">columns</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tablecomponent.html#displayempty" class="tsd-kind-icon">display<wbr>Empty</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tablecomponent.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="tablecomponent.html#label" class="tsd-kind-icon">label</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tablecomponent.html#longvalue" class="tsd-kind-icon">long<wbr>Value</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tablecomponent.html#type" class="tsd-kind-icon">type</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tablecomponent.html#url" class="tsd-kind-icon">url</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tablecomponent.html#value" class="tsd-kind-icon">value</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-				<a name="label" class="tsd-anchor"></a>
-				<h3>label</h3>
-				<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="columns" class="tsd-anchor"></a>
+				<h3>columns</h3>
+				<div class="tsd-signature tsd-kind-icon">columns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
-					<p>Inherited from <a href="baseargs.html">BaseArgs</a>.<a href="baseargs.html#label">label</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L11">types.ts:11</a></li>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L57">types.ts:57</a></li>
 					</ul>
 				</aside>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-				<a name="transform" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> transform</h3>
-				<div class="tsd-signature tsd-kind-icon">transform<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+				<a name="displayempty" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> display<wbr>Empty</h3>
+				<div class="tsd-signature tsd-kind-icon">display<wbr>Empty<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 				<aside class="tsd-sources">
-					<p>Inherited from <a href="baseargs.html">BaseArgs</a>.<a href="baseargs.html#transform">transform</a></p>
+					<p>Inherited from <a href="component.html">Component</a>.<a href="component.html#displayempty">displayEmpty</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L12">types.ts:12</a></li>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L48">types.ts:48</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<a name="fieldname" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> field<wbr>Name</h3>
+				<div class="tsd-signature tsd-kind-icon">field<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="component.html">Component</a>.<a href="component.html#fieldname">fieldName</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L50">types.ts:50</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+				<a name="label" class="tsd-anchor"></a>
+				<h3>label</h3>
+				<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Overrides <a href="component.html">Component</a>.<a href="component.html#label">label</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L56">types.ts:56</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<a name="longvalue" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> long<wbr>Value</h3>
+				<div class="tsd-signature tsd-kind-icon">long<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="component.html">Component</a>.<a href="component.html#longvalue">longValue</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L47">types.ts:47</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<a name="type" class="tsd-anchor"></a>
+				<h3>type</h3>
+				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="component.html">Component</a>.<a href="component.html#type">type</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L49">types.ts:49</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<a name="url" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> url</h3>
+				<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="component.html">Component</a>.<a href="component.html#url">url</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L52">types.ts:52</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<a name="value" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> value</h3>
+				<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="component.html">Component</a>.<a href="component.html#value">value</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/netvisionconsultants/ui-decorators/blob/1bc0b86/src/types.ts#L51">types.ts:51</a></li>
 					</ul>
 				</aside>
 			</section>

@@ -17,7 +17,7 @@ describe('table() decorator', () => {
         }
         const prop = 'testProp'
         const args: TableArgs = {
-            title: 'Table Title',
+            label: 'Table Title',
             columns: ['col3', 'col2', 'col1'],
             sortingColumn: 'col3',
             sortOrder: SortOrder.DESC
@@ -32,7 +32,7 @@ describe('table() decorator', () => {
         }
         const prop = 'testProp'
         const args: TableArgs = {
-            title: 'Table Title',
+            label: 'Table Title',
             columns: ['col3', 'col2', 'col1'],
             sortingColumn: 'col3'
         }
@@ -46,7 +46,7 @@ describe('table() decorator', () => {
         }
         const prop = 'testProp'
         const args: TableArgs = {
-            title: 'Table Title',
+            label: 'Table Title',
             columns: ['col3', 'col2', 'col1']
         }
         table(args)(target, prop)
@@ -59,7 +59,7 @@ describe('table() decorator', () => {
         }
         const prop = 'testProp'
         const args: TableArgs = {
-            title: 'Table Title',
+            label: 'Table Title',
             columns: [],
             sortingColumn: 'col4'
         }
@@ -74,7 +74,7 @@ describe('table() decorator', () => {
         }
         const prop = 'testProp'
         const args: TableArgs = {
-            title: 'Table Title',
+            label: 'Table Title',
             columns: ['col3', 'col2', 'col1'],
             sortingColumn: 'col4'
         }
@@ -96,7 +96,7 @@ describe('table() decorator', () => {
         }
         const prop = 'testProp'
         const args: TableArgs = {
-            title: 'Table Title',
+            label: 'Table Title',
             columns: ['col3', 'col2', 'col1'],
             sortingColumn: 'col2'
         }
@@ -111,7 +111,7 @@ describe('table() decorator', () => {
         }
         const prop = 'testProp'
         const args: TableArgs = {
-            title: 'Table Title',
+            label: 'Table Title',
             columns: ['col3', 'col2', 'col1'],
             sortingColumn: 'col2'
         }
@@ -132,7 +132,7 @@ describe('table() decorator', () => {
         }
         const prop = 'testProp'
         const args: TableArgs = {
-            title: 'Table Title',
+            label: 'Table Title',
             columns: ['col3', 'col2', 'col1'],
             sortingColumn: 'col2',
             transform: (a: any) => a
@@ -154,7 +154,7 @@ describe('table() decorator', () => {
         }
         const prop = 'testProp'
         const args: TableArgs = {
-            title: 'Table Title',
+            label: 'Table Title',
             columns: ['col3', 'col2', 'col1'],
             sortingColumn: 'col2',
             transform: (a: any) => [1]

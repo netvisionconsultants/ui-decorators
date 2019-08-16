@@ -1,22 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var source_1 = require("./decorators/source");
+var source_1 = require("./decorators/class/source");
 exports.source = source_1.source;
-var table_1 = require("./decorators/table");
+var table_1 = require("./decorators/property/table");
 exports.table = table_1.table;
-var field_1 = require("./decorators/field");
+var field_1 = require("./decorators/property/field");
 exports.field = field_1.field;
-var link_1 = require("./decorators/link");
+var link_1 = require("./decorators/property/link");
 exports.link = link_1.link;
-var documentId_1 = require("./decorators/documentId");
+var documentId_1 = require("./decorators/property/documentId");
 exports.documentId = documentId_1.documentId;
-var documentName_1 = require("./decorators/documentName");
+var documentName_1 = require("./decorators/property/documentName");
 exports.documentName = documentName_1.documentName;
-var documentType_1 = require("./decorators/documentType");
+var documentType_1 = require("./decorators/class/documentType");
 exports.documentType = documentType_1.documentType;
-var section_1 = require("./decorators/section");
-exports.hasSection = section_1.hasSection;
-var tableField_1 = require("./decorators/tableField");
+var tableField_1 = require("./decorators/property/tableField");
 exports.tableField = tableField_1.tableField;
 var geo_1 = require("./decorators/geo");
 exports.geoId = geo_1.geoId;
@@ -27,10 +25,10 @@ exports.geoLocations = geo_1.geoLocations;
 exports.geoDataSuperType = geo_1.geoDataSuperType;
 exports.geoImage = geo_1.geoImage;
 exports.geoImageDirection = geo_1.geoImageDirection;
-var UIComponent = /** @class */ (function () {
-    function UIComponent() {
+var UIDocument = /** @class */ (function () {
+    function UIDocument() {
     }
-    UIComponent.prototype.getTableColumns = function () {
+    UIDocument.prototype.getTableColumns = function () {
         var tableColumns = [];
         for (var k in this) {
             if (k.endsWith('-UITableField')) {
@@ -43,7 +41,7 @@ var UIComponent = /** @class */ (function () {
         }
         return tableColumns;
     };
-    UIComponent.prototype.renderComponentAsTabular = function () {
+    UIDocument.prototype.renderDocumentAsTabular = function () {
         var row = {};
         for (var k in this) {
             if (k.endsWith('-UITableField')) {
@@ -53,7 +51,7 @@ var UIComponent = /** @class */ (function () {
         }
         return row;
     };
-    UIComponent.prototype.renderGeoComponent = function () {
+    UIDocument.prototype.renderGeoDocument = function () {
         var geoComponent = {
             source: '',
             documentId: '',
@@ -98,11 +96,9 @@ var UIComponent = /** @class */ (function () {
         }
         return geoComponent;
     };
-    UIComponent.prototype.renderComponent = function () {
-        var sections = {};
+    UIDocument.prototype.renderDocument = function () {
         var body = {
             components: [],
-            sections: [],
             documentId: '',
             documentName: '',
             documentType: '',
@@ -111,15 +107,7 @@ var UIComponent = /** @class */ (function () {
         for (var k in this) {
             if (k.endsWith('UIField') || k.endsWith('UITable') || k.endsWith('UILink')) {
                 var component = this[k];
-                if (component.section) {
-                    if (!sections[component.section]) {
-                        sections[component.section] = { components: [] };
-                    }
-                    sections[component.section].components.push(this[k]);
-                }
-                else {
-                    body.components.push(component);
-                }
+                body.components.push(component);
             }
             else if (k === '_source') {
                 body.source = this[k];
@@ -134,17 +122,9 @@ var UIComponent = /** @class */ (function () {
                 body.documentType = this[k];
             }
         }
-        for (var key in sections) {
-            body.sections.push({
-                type: 'section',
-                title: this['_hasSections'][key].title,
-                order: this['_hasSections'][key].order,
-                components: sections[key].components
-            });
-        }
         return body;
     };
-    return UIComponent;
+    return UIDocument;
 }());
-exports.default = UIComponent;
+exports.default = UIDocument;
 //# sourceMappingURL=ui-component.js.map

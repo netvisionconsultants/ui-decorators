@@ -62,7 +62,7 @@ describe('UIDocument', () => {
         @source('Telegeography')
         class TestComponent extends UIDocument {
             @table({
-                title: 'Table Title',
+                label: 'Table Title',
                 columns: ['col3', 'col2', 'col1'],
                 sortingColumn: 'col2',
                 sortOrder: SortOrder.DESC
@@ -86,7 +86,7 @@ describe('UIDocument', () => {
         expect(json).toEqual({
             components: [
                 {
-                    title: 'Table Title',
+                    label: 'Table Title',
                     type: 'table',
                     columns: ['col3', 'col2', 'col1'],
                     value: [

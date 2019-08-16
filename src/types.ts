@@ -30,7 +30,7 @@ export interface GeoArgs {
 }
 
 export interface TableArgs {
-    title: string
+    label: string
     columns: Array<string>
     sortOrder?: SortOrder
     sortingColumn?: String
@@ -53,7 +53,7 @@ export interface Component {
 }
 
 export interface TableComponent extends Component {
-    title: string
+    label: string
     columns: Array<string>
 }
 

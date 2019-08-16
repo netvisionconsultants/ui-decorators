@@ -1,36 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function geoId(args) {
-    return function (target, propName) {
-        Object.defineProperty(target, propName + "-GeoId", {
-            get: function () {
-                return args && args.transform ? args.transform(this[propName]) : this[propName];
-            },
-            enumerable: true
-        });
-    };
-}
-exports.geoId = geoId;
-function geoDataType(args) {
-    return function (target, propName) {
-        Object.defineProperty(target, propName + "-GeoDataType", {
-            get: function () {
-                return args && args.transform ? args.transform(this[propName]) : this[propName];
-            },
-            enumerable: true
-        });
-    };
-}
-exports.geoDataType = geoDataType;
 function geoDataSuperType(name) {
     return function (constructor) {
         constructor.prototype._geoDataSuperType = name;
     };
 }
 exports.geoDataSuperType = geoDataSuperType;
-function geoDisplayName(args) {
+function propertyDecoratorBuilder(suffix, args) {
     return function (target, propName) {
-        Object.defineProperty(target, propName + "-GeoDisplayName", {
+        Object.defineProperty(target, propName + "-" + suffix, {
             get: function () {
                 return args && args.transform ? args.transform(this[propName]) : this[propName];
             },
@@ -38,16 +16,29 @@ function geoDisplayName(args) {
         });
     };
 }
+exports.propertyDecoratorBuilder = propertyDecoratorBuilder;
+function geoId(args) {
+    return propertyDecoratorBuilder('GeoId', args);
+}
+exports.geoId = geoId;
+function geoDataType(args) {
+    return propertyDecoratorBuilder('GeoDataType', args);
+}
+exports.geoDataType = geoDataType;
+function geoDisplayName(args) {
+    return propertyDecoratorBuilder('GeoDisplayName', args);
+}
 exports.geoDisplayName = geoDisplayName;
+function geoImage(args) {
+    return propertyDecoratorBuilder('GeoImage', args);
+}
+exports.geoImage = geoImage;
+function geoImageDirection(args) {
+    return propertyDecoratorBuilder('GeoImageDirection', args);
+}
+exports.geoImageDirection = geoImageDirection;
 function geoColor(args) {
-    return function (target, propName) {
-        Object.defineProperty(target, propName + "-GeoColor", {
-            get: function () {
-                return args && args.color ? args.color : this[propName];
-            },
-            enumerable: true
-        });
-    };
+    return propertyDecoratorBuilder('GeoColor', args);
 }
 exports.geoColor = geoColor;
 function geoLocations(args) {
@@ -64,26 +55,4 @@ function geoLocations(args) {
     };
 }
 exports.geoLocations = geoLocations;
-function geoImage(args) {
-    return function (target, propName) {
-        Object.defineProperty(target, propName + "-GeoImage", {
-            get: function () {
-                return args && args.transform ? args.transform(this[propName]) : this[propName];
-            },
-            enumerable: true
-        });
-    };
-}
-exports.geoImage = geoImage;
-function geoImageDirection(args) {
-    return function (target, propName) {
-        Object.defineProperty(target, propName + "-GeoImageDirection", {
-            get: function () {
-                return args && args.transform ? args.transform(this[propName]) : this[propName];
-            },
-            enumerable: true
-        });
-    };
-}
-exports.geoImageDirection = geoImageDirection;
 //# sourceMappingURL=geo.js.map

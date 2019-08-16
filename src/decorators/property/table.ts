@@ -46,12 +46,12 @@ export function createTable(
     return transform ? transform(sortedRows) : sortedRows
 }
 
-export function table({ title, columns, sortOrder, sortingColumn, transform }: TableArgs) {
+export function table({ label, columns, sortOrder, sortingColumn, transform }: TableArgs) {
     return function(target: Object, propName: string) {
         Object.defineProperty(target, `${propName}-UITable`, {
             get() {
                 const component: TableComponent = {
-                    title,
+                    label,
                     columns,
                     type: 'table',
                     value: createTable(this[propName], columns, sortOrder, sortingColumn, transform)

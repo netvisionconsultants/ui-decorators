@@ -5,11 +5,13 @@ function tableField(_a) {
     return function (target, propName) {
         Object.defineProperty(target, propName + "-UITableField", {
             get: function () {
-                return {
+                var component = {
                     label: label,
                     fieldName: propName,
+                    type: 'tableField',
                     value: transform ? transform(this[propName]) : this[propName]
                 };
+                return component;
             },
             enumerable: true
         });

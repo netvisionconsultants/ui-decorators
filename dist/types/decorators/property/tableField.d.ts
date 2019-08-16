@@ -1,5 +1,2 @@
-export interface TableFieldArgs {
-    label: string;
-    transform?: (val: any) => string;
-}
+import { TableFieldArgs } from '../../types';
 export declare function tableField({ label, transform }: TableFieldArgs): (target: any, propName: string) => void;

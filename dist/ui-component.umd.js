@@ -10,37 +10,12 @@
         };
     }
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-
-    var __assign = function() {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
-
     var SortOrder;
     (function (SortOrder) {
         SortOrder["ASC"] = "ASC";
         SortOrder["DESC"] = "DESC";
     })(SortOrder || (SortOrder = {}));
+
     function createTable(rows, columns, sortOrder, sortingColumn, transform) {
         if (!rows || rows.length === 0)
             return [];
@@ -76,12 +51,17 @@
         return transform ? transform(sortedRows) : sortedRows;
     }
     function table(_a) {
-        var title = _a.title, columns = _a.columns, sortOrder = _a.sortOrder, sortingColumn = _a.sortingColumn, transform = _a.transform, section = _a.section;
+        var label = _a.label, columns = _a.columns, sortOrder = _a.sortOrder, sortingColumn = _a.sortingColumn, transform = _a.transform;
         return function (target, propName) {
             Object.defineProperty(target, propName + "-UITable", {
                 get: function () {
-                    return __assign({ title: title,
-                        columns: columns, type: 'table', value: createTable(this[propName], columns, sortOrder, sortingColumn, transform) }, (section && { section: section }));
+                    var component = {
+                        label: label,
+                        columns: columns,
+                        type: 'table',
+                        value: createTable(this[propName], columns, sortOrder, sortingColumn, transform)
+                    };
+                    return component;
                 },
                 enumerable: true
             });
@@ -89,13 +69,19 @@
     }
 
     function field(_a) {
-        var label = _a.label, _b = _a.displayEmpty, displayEmpty = _b === void 0 ? false : _b, _c = _a.longValue, longValue = _c === void 0 ? false : _c, transform = _a.transform, section = _a.section;
+        var label = _a.label, _b = _a.displayEmpty, displayEmpty = _b === void 0 ? false : _b, _c = _a.longValue, longValue = _c === void 0 ? false : _c, transform = _a.transform;
         return function (target, propName) {
             Object.defineProperty(target, propName + "-UIField", {
                 get: function () {
-                    return __assign({ label: label,
+                    var component = {
+                        label: label,
                         longValue: longValue,
-                        displayEmpty: displayEmpty, type: 'field', fieldName: propName, value: transform ? transform(this[propName]) : this[propName] }, (section && { section: section }));
+                        displayEmpty: displayEmpty,
+                        type: 'field',
+                        fieldName: propName,
+                        value: transform ? transform(this[propName]) : this[propName]
+                    };
+                    return component;
                 },
                 enumerable: true
             });
@@ -103,11 +89,16 @@
     }
 
     function link(_a) {
-        var label = _a.label, url = _a.url, transform = _a.transform, section = _a.section;
+        var label = _a.label, url = _a.url, transform = _a.transform;
         return function (target, propName) {
             Object.defineProperty(target, propName + "-UILink", {
                 get: function () {
-                    return __assign({ label: label, type: 'link', url: transform ? transform(url) : url }, (section && { section: section }));
+                    var component = {
+                        label: label,
+                        type: 'link',
+                        url: transform ? transform(url) : url
+                    };
+                    return component;
                 },
                 enumerable: true
             });
@@ -142,60 +133,32 @@
         };
     }
 
-    function hasSection(_a) {
-        var name = _a.name, title = _a.title, order = _a.order;
-        return function (constructor) {
-            if (!constructor.prototype._hasSections) {
-                constructor.prototype._hasSections = {};
-            }
-            constructor.prototype._hasSections[name] = { name: name, title: title, order: order, components: [] };
-        };
-    }
-
     function tableField(_a) {
         var label = _a.label, transform = _a.transform;
         return function (target, propName) {
             Object.defineProperty(target, propName + "-UITableField", {
                 get: function () {
-                    return {
+                    var component = {
                         label: label,
                         fieldName: propName,
+                        type: 'tableField',
                         value: transform ? transform(this[propName]) : this[propName]
                     };
+                    return component;
                 },
                 enumerable: true
             });
         };
     }
 
-    function geoId(args) {
-        return function (target, propName) {
-            Object.defineProperty(target, propName + "-GeoId", {
-                get: function () {
-                    return args && args.transform ? args.transform(this[propName]) : this[propName];
-                },
-                enumerable: true
-            });
-        };
-    }
-    function geoDataType(args) {
-        return function (target, propName) {
-            Object.defineProperty(target, propName + "-GeoDataType", {
-                get: function () {
-                    return args && args.transform ? args.transform(this[propName]) : this[propName];
-                },
-                enumerable: true
-            });
-        };
-    }
     function geoDataSuperType(name) {
         return function (constructor) {
             constructor.prototype._geoDataSuperType = name;
         };
     }
-    function geoDisplayName(args) {
+    function propertyDecoratorBuilder(suffix, args) {
         return function (target, propName) {
-            Object.defineProperty(target, propName + "-GeoDisplayName", {
+            Object.defineProperty(target, propName + "-" + suffix, {
                 get: function () {
                     return args && args.transform ? args.transform(this[propName]) : this[propName];
                 },
@@ -203,15 +166,23 @@
             });
         };
     }
+    function geoId(args) {
+        return propertyDecoratorBuilder('GeoId', args);
+    }
+    function geoDataType(args) {
+        return propertyDecoratorBuilder('GeoDataType', args);
+    }
+    function geoDisplayName(args) {
+        return propertyDecoratorBuilder('GeoDisplayName', args);
+    }
+    function geoImage(args) {
+        return propertyDecoratorBuilder('GeoImage', args);
+    }
+    function geoImageDirection(args) {
+        return propertyDecoratorBuilder('GeoImageDirection', args);
+    }
     function geoColor(args) {
-        return function (target, propName) {
-            Object.defineProperty(target, propName + "-GeoColor", {
-                get: function () {
-                    return args && args.color ? args.color : this[propName];
-                },
-                enumerable: true
-            });
-        };
+        return propertyDecoratorBuilder('GeoColor', args);
     }
     function geoLocations(args) {
         return function (target, propName) {
@@ -226,31 +197,11 @@
             });
         };
     }
-    function geoImage(args) {
-        return function (target, propName) {
-            Object.defineProperty(target, propName + "-GeoImage", {
-                get: function () {
-                    return args && args.transform ? args.transform(this[propName]) : this[propName];
-                },
-                enumerable: true
-            });
-        };
-    }
-    function geoImageDirection(args) {
-        return function (target, propName) {
-            Object.defineProperty(target, propName + "-GeoImageDirection", {
-                get: function () {
-                    return args && args.transform ? args.transform(this[propName]) : this[propName];
-                },
-                enumerable: true
-            });
-        };
-    }
 
-    var UIComponent = /** @class */ (function () {
-        function UIComponent() {
+    var UIDocument = /** @class */ (function () {
+        function UIDocument() {
         }
-        UIComponent.prototype.getTableColumns = function () {
+        UIDocument.prototype.getTableColumns = function () {
             var tableColumns = [];
             for (var k in this) {
                 if (k.endsWith('-UITableField')) {
@@ -263,7 +214,7 @@
             }
             return tableColumns;
         };
-        UIComponent.prototype.renderComponentAsTabular = function () {
+        UIDocument.prototype.renderDocumentAsTabular = function () {
             var row = {};
             for (var k in this) {
                 if (k.endsWith('-UITableField')) {
@@ -273,7 +224,7 @@
             }
             return row;
         };
-        UIComponent.prototype.renderGeoComponent = function () {
+        UIDocument.prototype.renderGeoDocument = function () {
             var geoComponent = {
                 source: '',
                 documentId: '',
@@ -318,11 +269,9 @@
             }
             return geoComponent;
         };
-        UIComponent.prototype.renderComponent = function () {
-            var sections = {};
+        UIDocument.prototype.renderDocument = function () {
             var body = {
                 components: [],
-                sections: [],
                 documentId: '',
                 documentName: '',
                 documentType: '',
@@ -331,15 +280,7 @@
             for (var k in this) {
                 if (k.endsWith('UIField') || k.endsWith('UITable') || k.endsWith('UILink')) {
                     var component = this[k];
-                    if (component.section) {
-                        if (!sections[component.section]) {
-                            sections[component.section] = { components: [] };
-                        }
-                        sections[component.section].components.push(this[k]);
-                    }
-                    else {
-                        body.components.push(component);
-                    }
+                    body.components.push(component);
                 }
                 else if (k === '_source') {
                     body.source = this[k];
@@ -354,20 +295,12 @@
                     body.documentType = this[k];
                 }
             }
-            for (var key in sections) {
-                body.sections.push({
-                    type: 'section',
-                    title: this['_hasSections'][key].title,
-                    order: this['_hasSections'][key].order,
-                    components: sections[key].components
-                });
-            }
             return body;
         };
-        return UIComponent;
+        return UIDocument;
     }());
 
-    exports.default = UIComponent;
+    exports.default = UIDocument;
     exports.source = source;
     exports.table = table;
     exports.field = field;
@@ -375,7 +308,6 @@
     exports.documentId = documentId;
     exports.documentName = documentName;
     exports.documentType = documentType;
-    exports.hasSection = hasSection;
     exports.tableField = tableField;
     exports.geoId = geoId;
     exports.geoDataType = geoDataType;
